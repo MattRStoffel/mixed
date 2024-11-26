@@ -9,6 +9,7 @@
         hello = "echo hello";
         vim = "nvim";
         vi = "nvim";
+	nrs = "sudo nixos-rebuild switch --flake .";
       };
       stateVersion = "24.11";
     };
