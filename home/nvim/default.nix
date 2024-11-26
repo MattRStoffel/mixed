@@ -2,12 +2,7 @@
 
 {
   home-manager.users.matt = {
-    programs.neovim = 
-    let
-      toLua = str: "lua << EOF\n${str}\nEOF\n";
-      toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
-    in
-    {
+    programs.neovim = {
       enable = true;
       
       viAlias = true;
@@ -17,11 +12,13 @@
       plugins = with pkgs.vimPlugins; [
 	{
 	  plugin = comment-nvim;
-	  config = toLua "require(\"Comment\").setup()";
+	  type = "lua";
+	  config = "require(\"Comment\").setup()";
 	}
 	{
           plugin = conform-nvim;
-	  config = toLuaFile ./plugin/conform.lua;
+	  type = "lua";
+	  config = builtins.readFile ./plugin/conform.lua;
 	}
 	{
           plugin = dracula-nvim;
@@ -30,7 +27,8 @@
         neo-tree-nvim
 	{
           plugin = nvim-cmp;
-	  config = toLuaFile ./plugin/cmp.lua;
+	  type = "lua";
+	  config = builtins.readFile ./plugin/cmp.lua;
 	}
         nvim-lint
         nvim-lspconfig
@@ -45,11 +43,13 @@
         nvim-treesitter-textobjects
 	{
           plugin = lualine-nvim;
-	  config = toLuaFile ./plugin/lualine.lua;
+	  type = "lua";
+	  config = builtins.readFile ./plugin/lualine.lua;
 	}
 	{
           plugin = noice-nvim;
-	  config = toLuaFile ./plugin/noice.lua;
+	  type = "lua";
+	  config = builtins.readFile ./plugin/noice.lua;
 	}
         persistence-nvim
         telescope-nvim
