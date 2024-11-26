@@ -28,7 +28,10 @@
 	  config = "colorscheme dracula";
 	}
         neo-tree-nvim
-        nvim-cmp
+	{
+          plugin = nvim-cmp;
+	  config = toLuaFile ./nvim/plugin/cmp.lua;
+	}
         nvim-lint
         nvim-lspconfig
         (nvim-treesitter.withPlugins (p: [
@@ -40,14 +43,16 @@
           p.tree-sitter-json
         ]))
         nvim-treesitter-textobjects
-        lualine-nvim
+	{
+          plugin = lualine-nvim;
+	  config = toLuaFile ./nvim/plugin/lualine.lua;
+	}
 	{
           plugin = noice-nvim;
 	  config = toLuaFile ./nvim/plugin/noice.lua;
 	}
         persistence-nvim
         telescope-nvim
-        tokyonight-nvim
         which-key-nvim
       ];
     };
