@@ -20,18 +20,6 @@
     }))
   ];
 
-  services.xserver = {
-    enable = true;
-    libinput.enable = true;
-    inputClassSections = [
-      {
-        identifier = "Trackpad";
-        matchDriver = "libinput";
-        matchIsTouchpad = "on";
-        option.Tapping = "off";
-      }
-    ];
-  };
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
