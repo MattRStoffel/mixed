@@ -1,20 +1,21 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./home/nvim.nix
+    ./home/nextcloud.nix
+    ./home/fonts.nix
+  ];
   home-manager.users.matt = {
-    programs.bash.enable = true;
     home = {
       shellAliases = {
         ":q" = "exit";
         hello = "echo hello";
-        vim = "nvim";
-        vi = "nvim";
 	nrs = "sudo nixos-rebuild switch --flake .";
       };
       stateVersion = "24.11";
     };
     programs = {
-      neovim.enable = true;
       firefox.enable = true;
       fzf.enable = true;
       fd.enable = true;
@@ -45,4 +46,4 @@
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
   };
-} 
+}
