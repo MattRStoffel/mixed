@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./home/nvim.nix
+    ./home/nvim
     ./home/nextcloud.nix
     ./home/fonts.nix
   ];

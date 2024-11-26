@@ -21,7 +21,7 @@
 	}
 	{
           plugin = conform-nvim;
-	  config = toLuaFile ./nvim/plugin/conform.lua;
+	  config = toLuaFile ./plugin/conform.lua;
 	}
 	{
           plugin = dracula-nvim;
@@ -30,7 +30,7 @@
         neo-tree-nvim
 	{
           plugin = nvim-cmp;
-	  config = toLuaFile ./nvim/plugin/cmp.lua;
+	  config = toLuaFile ./plugin/cmp.lua;
 	}
         nvim-lint
         nvim-lspconfig
@@ -45,11 +45,11 @@
         nvim-treesitter-textobjects
 	{
           plugin = lualine-nvim;
-	  config = toLuaFile ./nvim/plugin/lualine.lua;
+	  config = toLuaFile ./plugin/lualine.lua;
 	}
 	{
           plugin = noice-nvim;
-	  config = toLuaFile ./nvim/plugin/noice.lua;
+	  config = toLuaFile ./plugin/noice.lua;
 	}
         persistence-nvim
         telescope-nvim
