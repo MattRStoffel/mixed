@@ -18,6 +18,7 @@
     };
     programs = {
       kitty.enable = true;
+      feh.enable = true;
       firefox.enable = true;
       fzf.enable = true;
       fd.enable = true;
