@@ -17,6 +17,7 @@
       stateVersion = "24.11";
     };
     programs = {
+      kitty.enable = true;
       firefox.enable = true;
       fzf.enable = true;
       fd.enable = true;
