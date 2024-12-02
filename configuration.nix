@@ -9,6 +9,7 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Make the macbook-pro work
   hardware.firmware = [
     (pkgs.stdenvNoCC.mkDerivation (final: {
       name = "brcm-firmware";
