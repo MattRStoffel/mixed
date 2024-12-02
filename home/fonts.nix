@@ -4,7 +4,7 @@
   fonts = {
     packages = with pkgs; [
       ibm-plex
-      (nerdfonts.override {fonts = ["Hack"];})
+      nerd-fonts.hack
       font-awesome
       noto-fonts
     ];
