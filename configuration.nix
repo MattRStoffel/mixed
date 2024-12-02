@@ -37,6 +37,13 @@
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
+      extraPackages = with pkgs; [
+        dzen2
+	dmenu
+	i3status
+	i3lock
+	i3blocks
+      ];
     };
   };
 
