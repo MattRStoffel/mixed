@@ -1,5 +1,13 @@
 { config, lib, pkgs, ... }:
-
+let
+  tex = (pkgs.texlive.combine {
+    inherit (pkgs.texlive) scheme-medium
+      dvisvgm dvipng # for preview and export as html
+      wrapfig amsmath ulem hyperref capt-of;
+      #(setq org-latex-compiler "lualatex")
+      #(setq org-preview-latex-default-process 'dvisvgm)
+  });
+in
 {
   imports = 
   [
@@ -14,7 +22,10 @@
         hello = "echo hello";
 	nrs = "sudo nixos-rebuild switch --flake .";
       };
-      stateVersion = "24.11";
+      stateVersion = "24.11"; 
+      packages = with pkgs; [
+        tex
+      ];
     };
     programs = {
       kitty.enable = true;
