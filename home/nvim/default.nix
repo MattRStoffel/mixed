@@ -124,31 +124,45 @@ in
         vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
         vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
         vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
-	vim.cmd.colorscheme 'dracula'
       '';
 
       plugins = with pkgs.vimPlugins; [
 	comment-nvim
-        conform-nvim
-        dracula-nvim
+	{
+          plugin = conform-nvim;
+	  type = "lua";
+	  config = builtins.readFile ./plugins/conform.lua;
+	}
+	{
+          plugin = dracula-nvim;
+	  type = "lua";
+	  config = "vim.cmd.colorscheme 'dracula'";
+	}
+	mini-nvim
         neo-tree-nvim
         nvim-cmp
         nvim-lint
         nvim-lspconfig
-	lualine-nvim
-        noice-nvim
+	{
+	  plugin = lualine-nvim;
+	  type = "lua";
+	  config = builtins.readFile ./plugins/lualine.lua;
+	}
+	nvim-web-devicons
+	{
+          plugin = noice-nvim;
+	  type = "lua";
+	  config = builtins.readFile ./plugins/noice.lua;
+	}
         persistence-nvim
-	telescope-nvim
+	{
+	  plugin = telescope-nvim;
+	  type = "lua";
+	  config = builtins.readFile ./plugins/telescope.lua;
+	}
+	vimtex
         which-key-nvim
       ];
-    };
-  
-    home.file = {
-      ".config/nvim/lua/plugins" = {
-        recursive = true;
-        source = ./plugins;
-      };
     };
   };
 }

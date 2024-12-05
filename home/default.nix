@@ -33,6 +33,7 @@ in
       firefox.enable = true;
       fzf.enable = true;
       fd.enable = true;
+      ripgrep.enable = true;
       starship.enable = true;
       git = {
         enable = true;
