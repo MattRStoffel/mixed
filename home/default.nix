@@ -1,7 +1,10 @@
-{ config, lib, pkgs, ... }:
 {
-  imports = 
-  [
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
     ./fonts.nix
     ./nextcloud.nix
     ./nvim
@@ -11,12 +14,11 @@
       shellAliases = {
         ":q" = "exit";
         hello = "echo hello";
-	nrs = "sudo nixos-rebuild switch --flake .";
+        nrs = "sudo nixos-rebuild switch --flake .";
       };
-      stateVersion = "24.11"; 
+      stateVersion = "24.11";
       packages = with pkgs; [
-	unzip
-	alejandra
+        unzip
       ];
     };
     programs = {
