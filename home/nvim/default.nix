@@ -40,11 +40,6 @@ in
 
 	# LSP
 	{
-	  plugin = mason-nvim;
-	  type = "lua";
-	  config = "require(\"mason\").setup()";
-	}
-	{
 	  plugin = nvim-lspconfig;
 	  type = "lua";
 	  config = builtins.readFile ./plugins/lspconfig.lua;
