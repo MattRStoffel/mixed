@@ -1,4 +1,5 @@
 local lspc = require("lspconfig")
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- List of language servers to configure
 local servers = {
@@ -13,6 +14,7 @@ local servers = {
 
 -- Default options for all servers
 local default_opts = {
+  capabilities = capabilities
   on_attach = function()
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {buffer=0})
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer=0})
