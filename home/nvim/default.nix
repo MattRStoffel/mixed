@@ -109,6 +109,7 @@ in
         delve
   
         # Additional
+	texliveMedium
         texlab
         codespell
         gitlint
