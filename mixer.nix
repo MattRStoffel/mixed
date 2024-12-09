@@ -13,15 +13,14 @@
 
       $EDITOR .
 
-      # Might be spicy
-      git add .
-
       # Early return if no changes were detected (thanks @singiamtel!)
       if git diff --quiet '*.nix' '*.lua'; then
           echo "No changes, exiting."
           popd
           exit 0
       fi
+
+      git add .
 
       # Shows your changes
       git diff -U0 '*.nix'

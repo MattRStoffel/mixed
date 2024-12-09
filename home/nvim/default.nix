@@ -24,10 +24,14 @@ in
 
       plugins = with pkgs.vimPlugins; [
 	comment-nvim
-	nvim-cmp
 	nvim-web-devicons
 	vimtex
         which-key-nvim
+	{
+	  plugin = nvim-cmp;
+	  type = "lua";
+	  config = builtins.readFile ./plugins/cmp.lua;
+	}
 	{
 	  plugin = conform-nvim;
 	  type = "lua";
