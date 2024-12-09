@@ -23,12 +23,14 @@ in
       extraLuaConfig = builtins.readFile ./init.lua;
 
       plugins = with pkgs.vimPlugins; [
-	comment-nvim
-	nvim-web-devicons
-	vimtex
-        which-key-nvim
+	# LSP
+	{
+	  plugin = nvim-lspconfig;
+	  type = "lua";
+	  config = builtins.readFile ./plugins/lspconfig.lua;
+	}
 
-
+	# Completions
 	{
 	  plugin = nvim-cmp;
 	  type = "lua";
@@ -37,35 +39,31 @@ in
 	cmp-nvim-lsp
 	cmp-buffer
 	cmp-path
-	luasnip
 	cmp_luasnip
+	luasnip
 
+	comment-nvim
+
+	# Formatting
 	{
 	  plugin = conform-nvim;
 	  type = "lua";
 	  config = builtins.readFile ./plugins/conform.lua;
 	}
 
-	# LSP
-	{
-	  plugin = nvim-lspconfig;
-	  type = "lua";
-	  config = builtins.readFile ./plugins/lspconfig.lua;
-	}
-
-	# UI
-	{
-	  plugin = telescope-nvim;
-	  type = "lua";
-	  config = builtins.readFile ./plugins/telescope.lua;
-	}
+	# Editor
+        which-key-nvim
+	nvim-web-devicons
 	{
           plugin = neo-tree-nvim;
 	  type = "lua";
 	  config = builtins.readFile ./plugins/neo-tree.lua;
 	}
-
-	# UX
+	{
+	  plugin = telescope-nvim;
+	  type = "lua";
+	  config = builtins.readFile ./plugins/telescope.lua;
+	}
 	{
           plugin = dracula-nvim;
 	  type = "lua";
@@ -81,6 +79,9 @@ in
 	  type = "lua";
 	  config = builtins.readFile ./plugins/noice.lua;
 	}
+
+	# Misc
+	vimtex
       ];
 
       # All the language servers
