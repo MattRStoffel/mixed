@@ -27,11 +27,19 @@ in
 	nvim-web-devicons
 	vimtex
         which-key-nvim
+
+
 	{
 	  plugin = nvim-cmp;
 	  type = "lua";
 	  config = builtins.readFile ./plugins/cmp.lua;
 	}
+	cmp-nvim-lsp
+	cmp-buffer
+	cmp-path
+	luasnip
+	cmp_luasnip
+
 	{
 	  plugin = conform-nvim;
 	  type = "lua";
