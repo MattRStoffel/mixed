@@ -3,7 +3,7 @@ local lspc = require("lspconfig")
 -- List of language servers to configure
 local servers = {
   pyright = {},           -- Python
-  lua_ls = {},            -- Lua (use "sumneko_lua" for older versions)
+  lua_ls = {},            -- Lua
   nil_ls = {},            -- Nix
   clangd = {},            -- C, C++
   bashls = {},            -- Shell scripting
@@ -23,7 +23,6 @@ local default_opts = {
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
     vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
   end,
-  capabilities = require('cmp_nvim_lsp').default_capabilities(),
 }
 
 -- Setup each server with default options
