@@ -79,12 +79,14 @@ in
 	  config = builtins.readFile ./plugins/noice.lua;
 	}
       ];
+
+      # All the language servers
       extraPackages = with pkgs; [
         # Python
         pyright
   
         # Lua
-        lua-language-server
+	luajitPackages.lua-lsp
   
         # Nix
         nil
