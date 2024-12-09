@@ -14,6 +14,7 @@ telescope.setup({
 
 wk.add({
     { "<leader>T", builtin.builtin, desc = "Telescope - find picker" },
+    { "<leader> ", builtin.find_files, desc = "Find file" },
     { "<leader>f", group = "Telescope" },
     { "<leader>ff", builtin.find_files, desc = "Find file" },
     { "<leader>fg", builtin.live_grep, desc = "Live grep" },

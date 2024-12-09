@@ -24,44 +24,56 @@ in
 
       plugins = with pkgs.vimPlugins; [
 	comment-nvim
+	nvim-cmp
+	nvim-web-devicons
+	vimtex
+        which-key-nvim
 	{
-          plugin = conform-nvim;
+	  plugin = conform-nvim;
 	  type = "lua";
 	  config = builtins.readFile ./plugins/conform.lua;
 	}
+
+	# LSP
 	{
-          plugin = dracula-nvim;
+	  plugin = mason-nvim;
 	  type = "lua";
-	  config = "vim.cmd.colorscheme 'dracula'";
+	  config = "require(\"mason\").setup()";
 	}
-	mini-nvim
 	{
-          plugin = neo-tree-nvim;
+	  plugin = nvim-lspconfig;
 	  type = "lua";
-	  config = builtins.readFile ./plugins/neo-tree.lua;
+	  config = builtins.readFile ./plugins/lspconfig.lua;
 	}
-        nvim-cmp
-        nvim-lint
-        nvim-lspconfig
-	{
-	  plugin = lualine-nvim;
-	  type = "lua";
-	  config = builtins.readFile ./plugins/lualine.lua;
-	}
-	nvim-web-devicons
-	{
-          plugin = noice-nvim;
-	  type = "lua";
-	  config = builtins.readFile ./plugins/noice.lua;
-	}
-        persistence-nvim
+
+	# UI
 	{
 	  plugin = telescope-nvim;
 	  type = "lua";
 	  config = builtins.readFile ./plugins/telescope.lua;
 	}
-	vimtex
-        which-key-nvim
+	{
+          plugin = neo-tree-nvim;
+	  type = "lua";
+	  config = builtins.readFile ./plugins/neo-tree.lua;
+	}
+
+	# UX
+	{
+          plugin = dracula-nvim;
+	  type = "lua";
+	  config = "vim.cmd.colorscheme 'dracula'";
+	}
+	{
+	  plugin = lualine-nvim;
+	  type = "lua";
+	  config = builtins.readFile ./plugins/lualine.lua;
+	}
+	{
+          plugin = noice-nvim;
+	  type = "lua";
+	  config = builtins.readFile ./plugins/noice.lua;
+	}
       ];
     };
   };
