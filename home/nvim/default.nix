@@ -79,6 +79,39 @@ in
 	  config = builtins.readFile ./plugins/noice.lua;
 	}
       ];
+      extraPackages = with pkgs; [
+        # Python
+        pyright
+  
+        # Lua
+        lua-language-server
+  
+        # Nix
+        nil
+  
+        # C, C++
+        clang-tools
+        cppcheck
+  
+        # Shell scripting
+        shfmt
+        shellcheck
+  
+        # Go
+        go
+        gopls
+        golangci-lint
+        delve
+  
+        # Additional
+        texlab
+        codespell
+        gitlint
+  
+        # Telescope dependencies
+        ripgrep
+        fd
+      ];
     };
   };
 }
