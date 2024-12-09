@@ -1,5 +1,4 @@
 local lspc = require("lspconfig")
-local capabilities = 
 
 -- List of language servers to configure
 local servers = {
