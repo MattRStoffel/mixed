@@ -1,1 +1,1 @@
-local cmp = require("nvim-cmp") 
+local cmp = require("cmp")
