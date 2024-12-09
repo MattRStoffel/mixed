@@ -1,12 +1,10 @@
+warning: Git tree '/home/matt/.mixed' is dirty
 building the system configuration...
+warning: Git tree '/home/matt/.mixed' is dirty
 evaluation warning: hardware.apple-t2.enableTinyDfr is deprecated since the module has been upstreamed as hardware.apple.touchBar.
                     This option will be removed from the apple/t2 profile when NixOS 24.11 is released.
-stopping the following units: accounts-daemon.service, power-profiles-daemon.service, systemd-tmpfiles-resetup.service, systemd-udevd-control.socket, systemd-udevd-kernel.socket, systemd-udevd.service, upower.service
-NOT restarting the following changed units: display-manager.service
+evaluation warning: The option `services.xserver.displayManager.defaultSession' defined in `/nix/store/9jn09da42mp10is5npaapq4bdwrrc7im-source/configuration.nix' has been renamed to `services.displayManager.defaultSession'.
 activating the configuration...
 setting up /etc...
 reloading user units for matt...
 restarting sysinit-reactivation.target
-reloading the following units: dbus.service
-restarting the following units: nix-daemon.service, polkit.service
-starting the following units: accounts-daemon.service, power-profiles-daemon.service, systemd-tmpfiles-resetup.service, systemd-udevd-control.socket, systemd-udevd-kernel.socket, upower.service

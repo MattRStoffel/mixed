@@ -26,7 +26,7 @@
       git diff -U0 '*.nix'
 
       # Rebuild, output simplified errors, log trackebacks
-      sudo nixos-rebuild switch &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
+      sudo nixos-rebuild switch --flake . &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
 
       # Get current generation metadatA
       current=$(nixos-rebuild list-generations | grep current)
