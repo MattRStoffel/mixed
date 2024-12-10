@@ -92,7 +92,7 @@ in
 	  config = builtins.readFile ./plugins/copilot.lua;
 	}
 	copilot-lualine
-	copilot-cmp
+	CopilotChat-nvim
 
 
 	# Misc
