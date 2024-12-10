@@ -1,8 +1,5 @@
 {
-  config,
-  lib,
   pkgs,
-  callPackage,
   ...
 }: {
   imports = [
@@ -31,7 +28,6 @@
   services.xserver = {
     enable = true;
     displayManager = {
-      defaultSession = "none+i3";
       sessionCommands = ''
         ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
         Xft.dpi: 192
@@ -54,6 +50,8 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+
+  services.displayManager.defaultSession = "none+i3";
 
   # Configure keymap in X11
   services.xserver.xkb.layout = "us";
