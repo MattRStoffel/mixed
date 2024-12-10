@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   ...
 }: {
@@ -13,8 +11,6 @@
     home = {
       shellAliases = {
         ":q" = "exit";
-        hello = "echo hello";
-        nrs = "sudo nixos-rebuild switch --flake .";
       };
       stateVersion = "24.11";
       packages = with pkgs; [
@@ -23,7 +19,6 @@
     };
     programs = {
       kitty.enable = true;
-      feh.enable = true;
       firefox.enable = true;
       fzf.enable = true;
       fd.enable = true;

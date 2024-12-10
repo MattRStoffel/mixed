@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
   fromGitHub = ref: repo: pkgs.vimUtils.buildVimPlugin {
