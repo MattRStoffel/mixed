@@ -101,6 +101,8 @@ in
 
       # All the language servers
       extraPackages = with pkgs; [
+	nodejs
+
         # Python
         pyright
   
