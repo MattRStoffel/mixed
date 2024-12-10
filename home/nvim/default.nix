@@ -93,6 +93,7 @@ in
 	}
 	copilot-lualine
 	CopilotChat-nvim
+	copilot-cmp
 
 
 	# Misc
