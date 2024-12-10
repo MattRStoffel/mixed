@@ -85,6 +85,16 @@ in
 	  config = builtins.readFile ./plugins/noice.lua;
 	}
 
+	# Copilot
+	{
+	  plugin = copilot-lua;
+	  type = "lua";
+	  config = builtins.readFile ./plugins/copilot.lua;
+	}
+	copilot-lualine
+	copilot-cmp
+
+
 	# Misc
 	vimtex
       ];
