@@ -60,6 +60,11 @@ in
 	  config = builtins.readFile ./plugins/neo-tree.lua;
 	}
 	{
+	  plugin = oil-nvim;
+	  type = "lua";
+	  config = builtins.readFile ./plugins/oil-nvim.lua;
+	}
+	{
 	  plugin = telescope-nvim;
 	  type = "lua";
 	  config = builtins.readFile ./plugins/telescope.lua;
