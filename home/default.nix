@@ -25,6 +25,7 @@
     programs = {
       kitty.enable = true;
       firefox.enable = true;
+      lsd.enable = true;
       fzf.enable = true;
       fd.enable = true;
       ripgrep.enable = true;
