@@ -43,6 +43,7 @@
         i3lock
         i3blocks
         brightnessctl
+	pulseaudio
       ];
     };
   };
