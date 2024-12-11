@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   ...
 }: {
@@ -10,18 +8,18 @@
 
   users.users.matt = {
     isNormalUser = true;
-    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel"];
     initialPassword = "poop";
     packages = with pkgs; [
-      legcord
+      # legcord
       nextcloud-client
     ];
   };
 
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
+    # remotePlay.openFirewall = true;
+    # dedicatedServer.openFirewall = true;
+    # localNetworkGameTransfers.openFirewall = true;
   };
 }
