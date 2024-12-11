@@ -7,6 +7,9 @@
     ./nextcloud.nix
     ./nvim
   ];
+  
+  programs.steam.enable = true;
+
   home-manager.users.matt = {
     home = {
       shellAliases = {
