@@ -14,6 +14,12 @@
     home = {
       shellAliases = {
         ":q" = "exit";
+	"ls" = "lsd";
+	"la" = "lsd -a";
+	"ll" = "lsd -l";
+	"lt" = "lsd --tree";
+	"lla" ="lsd -la";
+	"llt" ="lsd -l --tree";
       };
       stateVersion = "24.11";
       packages = with pkgs; [
