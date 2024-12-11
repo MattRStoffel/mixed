@@ -55,6 +55,11 @@ in
         which-key-nvim
 	nvim-web-devicons
 	{
+	  plugin = flash-nvim;
+	  type = "lua";
+	  config = builtins.readFile ./plugins/flash-nvim.lua;
+	}
+	{
           plugin = neo-tree-nvim;
 	  type = "lua";
 	  config = builtins.readFile ./plugins/neo-tree.lua;
