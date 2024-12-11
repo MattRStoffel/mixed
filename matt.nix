@@ -10,10 +10,6 @@
     isNormalUser = true;
     extraGroups = ["wheel"];
     initialPassword = "poop";
-    packages = with pkgs; [
-      # legcord
-      nextcloud-client
-    ];
   };
 
   programs.steam = {
