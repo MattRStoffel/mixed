@@ -38,6 +38,8 @@
       starship.enable = true;
       git = {
         enable = true;
+	userName = "MattRStoffel";
+	userEmail = "Matt@MrStoffel.com";
       };
       zoxide = {
         enable = true;
