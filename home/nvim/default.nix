@@ -96,9 +96,9 @@ in
 	  type = "lua";
 	  config = builtins.readFile ./plugins/copilot.lua;
 	}
-	copilot-lualine
 	CopilotChat-nvim
-	copilot-cmp
+	plenary-nvim # for CopilotChat-nvim
+	copilot-lualine
 
 
 	# Misc
