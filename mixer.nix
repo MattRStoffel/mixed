@@ -19,8 +19,6 @@
           exit 0
       fi
 
-      git add .
-
       # Shows your changes
       git diff -U0 '*.nix'
 
