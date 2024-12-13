@@ -65,9 +65,10 @@
 
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    vim
+    neovim
     tailscale
   ];
+  environment.variables.EDITOR = "neovim";
 
   services.tailscale.enable = true;
 
