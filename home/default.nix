@@ -6,6 +6,7 @@
     ./fonts.nix
     ./nextcloud.nix
     ./nvim
+    ./kitty
   ];
   
   programs.steam.enable = true;
@@ -29,7 +30,6 @@
       ];
     };
     programs = {
-      kitty.enable = true;
       firefox.enable = true;
       lsd.enable = true;
       fzf.enable = true;

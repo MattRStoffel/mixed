@@ -10,6 +10,7 @@
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nixpkgs.config.allowUnfree = true;
 
   # Make the macbook-pro work
   hardware.firmware = [
@@ -23,52 +24,52 @@
     }))
   ];
 
+  environment.systemPackages = with pkgs; [
+    neovim
+    tailscale
+  ];
+  environment.variables.EDITOR = "neovim";
   environment.pathsToLink = ["/libexec"];
 
   services.xserver = {
     enable = true;
+    xkb.layout = "us";
     displayManager = {
+      gdm.enable = true;
       sessionCommands = ''
         ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
         Xft.dpi: 192
         EOF
       '';
     };
+    # desktopManager.plasma5.enable = true;
+    # desktopManager.gnome.enable = true;
     windowManager.i3 = {
       enable = true;
-      package = pkgs.i3-gaps;
       extraPackages = with pkgs; [
-        dmenu
+	networkmanager
+	dmenu
         i3status
         i3lock
         i3blocks
         brightnessctl
-	pulseaudio
+	pulseaudio 
+	arandr # For adjusting screen layout
+	autorandr # Auto Activate screens
+	feh # For setting wallpaper
       ];
     };
   };
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  services.displayManager.defaultSession = "none+i3";
-
-  # Configure keymap in X11
-  services.xserver.xkb.layout = "us";
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos";
+  networking.networkmanager.enable = true;
+  networking.wireless.iwd.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
 
   time.timeZone = "America/Los_Angeles";
-
-  nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [
-    neovim
-    tailscale
-  ];
-  environment.variables.EDITOR = "neovim";
 
   services.tailscale.enable = true;
 
