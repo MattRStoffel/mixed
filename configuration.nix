@@ -36,29 +36,29 @@
     xkb.layout = "us";
     displayManager = {
       gdm.enable = true;
-      sessionCommands = ''
-        ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
-        Xft.dpi: 192
-        EOF
-      '';
+      # sessionCommands = ''
+      #   ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
+      #   Xft.dpi: 192
+      #   EOF
+      # '';
     };
     # desktopManager.plasma5.enable = true;
-    # desktopManager.gnome.enable = true;
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-	networkmanager
-	dmenu
-        i3status
-        i3lock
-        i3blocks
-        brightnessctl
-	pulseaudio 
-	arandr # For adjusting screen layout
-	autorandr # Auto Activate screens
-	feh # For setting wallpaper
-      ];
-    };
+    desktopManager.gnome.enable = true;
+    windowManager.i3.enable = true;
+	#      enable = true;
+	#      extraPackages = with pkgs; [
+	#        networkmanager
+	#        dmenu
+	#        i3status
+	#        i3lock
+	#        i3blocks
+	#        brightnessctl
+	#        pulseaudio 
+	#        arandr # For adjusting screen layout
+	#        autorandr # Auto Activate screens
+	#        feh # For setting wallpaper
+	#      ];
+	#    };
   };
 
   boot.loader.systemd-boot.enable = true;

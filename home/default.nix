@@ -6,12 +6,14 @@
     ./fonts.nix
     ./nextcloud.nix
     ./nvim
-    ./kitty
+    ./kitty.nix
+    ./i3.nix
   ];
   
   programs.steam.enable = true;
 
   home-manager.users.matt = {
+    
     home = {
       shellAliases = {
         ":q" = "exit";
