@@ -65,11 +65,44 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1672633908,
+        "narHash": "sha256-sP0BMp4DprVCBjcTYPsTPwkJMsc45vM0FxHdDx6qE8U=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a4379d2b0deefedc8dba360897557707ea9ee9a7",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
     "root": {
       "inputs": {
         "hardware": "hardware",
         "home": "home",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "xencelabs": "xencelabs"
+      }
+    },
+    "xencelabs": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1672789271,
+        "narHash": "sha256-fBwDbBUqrqp6GgCCpwHcN4WT24sVCUj0a/2URj6G/mg=",
+        "owner": "nilp0inter",
+        "repo": "nixos-xencelabs",
+        "rev": "777ec5d5bd6a21e6ca3361dc57060b183a8ddc9b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nilp0inter",
+        "repo": "nixos-xencelabs",
+        "type": "github"
       }
     }
   },
