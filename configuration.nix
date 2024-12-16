@@ -7,7 +7,7 @@
     ./hardware-configuration.nix
     ./mixer.nix
     ./matt.nix
-    ./nixos-xencelabs/nixos.nix
+    ./nixos-xencelabs/xencelabs.nix
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];

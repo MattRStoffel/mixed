@@ -16,4 +16,4 @@ error:
 
        (stack trace truncated; use '--show-trace' to show the full, detailed trace)
 
-       error: path '/nix/store/dpi89whk08g8q23k9klwvk7f5d2fssfp-source/nixos-xencelabs/nixos.nix' does not exist
+       error: path '/nix/store/dbispgagidbmxazymnkw03sawlq9icp7-source/nixos-xencelabs/xencelabs.nix' does not exist
