@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ./mixer.nix
     ./matt.nix
+    ./nixos-xencelabs/nixos.nix
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -72,6 +73,7 @@
   time.timeZone = "America/Los_Angeles";
 
   services.tailscale.enable = true;
+  services.xencelabs.enable = true;
 
   system.stateVersion = "24.11";
 }
