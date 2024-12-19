@@ -1,19 +1,14 @@
 warning: Git tree '/home/matt/.mixed' is dirty
-error:
-       … while calling the 'seq' builtin
-         at /nix/store/ab78nf3ad8ly49zfyd3igw3f2n5q7fz4-source/lib/modules.nix:334:18:
-          333|         options = checked options;
-          334|         config = checked (removeAttrs config [ "_module" ]);
-             |                  ^
-          335|         _module = checked (config._module);
-
-       … while evaluating a branch condition
-         at /nix/store/ab78nf3ad8ly49zfyd3igw3f2n5q7fz4-source/lib/modules.nix:273:9:
-          272|       checkUnmatched =
-          273|         if config._module.check && config._module.freeformType == null && merged.unmatchedDefns != [] then
-             |         ^
-          274|           let
-
-       (stack trace truncated; use '--show-trace' to show the full, detailed trace)
-
-       error: path '/nix/store/dbispgagidbmxazymnkw03sawlq9icp7-source/nixos-xencelabs/xencelabs.nix' does not exist
+building the system configuration...
+warning: Git tree '/home/matt/.mixed' is dirty
+evaluation warning: hardware.apple-t2.enableTinyDfr is deprecated since the module has been upstreamed as hardware.apple.touchBar.
+                    This option will be removed from the apple/t2 profile when NixOS 24.11 is released.
+these 2 derivations will be built:
+  /nix/store/j9j1szkx0jyhcg80vxkfqnvfx9zm0856-etc.drv
+  /nix/store/zrhg03b36v8dma8fah8i1v7039gjf5jk-nixos-system-nixos-25.05.20241201.ac35b10.drv
+building '/nix/store/j9j1szkx0jyhcg80vxkfqnvfx9zm0856-etc.drv'...
+building '/nix/store/zrhg03b36v8dma8fah8i1v7039gjf5jk-nixos-system-nixos-25.05.20241201.ac35b10.drv'...
+activating the configuration...
+setting up /etc...
+reloading user units for matt...
+restarting sysinit-reactivation.target

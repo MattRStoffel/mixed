@@ -7,7 +7,6 @@
     ./hardware-configuration.nix
     ./mixer.nix
     ./matt.nix
-    ./nixos-xencelabs/xencelabs.nix
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -29,7 +28,7 @@
     neovim
     tailscale
   ];
-  environment.variables.EDITOR = "neovim";
+  environment.variables.EDITOR = "nvim";
   environment.pathsToLink = ["/libexec"];
 
   services.xserver = {
@@ -37,11 +36,11 @@
     xkb.layout = "us";
     displayManager = {
       gdm.enable = true;
-      # sessionCommands = ''
-      #   ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
-      #   Xft.dpi: 192
-      #   EOF
-      # '';
+      sessionCommands = ''
+        ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF
+        Xft.dpi: 192
+        EOF
+      '';
     };
     # desktopManager.plasma5.enable = true;
     desktopManager.gnome.enable = true;
@@ -73,7 +72,6 @@
   time.timeZone = "America/Los_Angeles";
 
   services.tailscale.enable = true;
-  services.xencelabs.enable = true;
 
   system.stateVersion = "24.11";
 }
