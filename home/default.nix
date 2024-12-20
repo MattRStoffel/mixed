@@ -29,6 +29,7 @@
       };
       stateVersion = "24.11";
       packages = with pkgs; [
+        zoom-us
         legcord
         nextcloud-client
         unzip
