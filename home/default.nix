@@ -35,6 +35,7 @@
       ];
     };
     programs = {
+      bat.enable = true;
       firefox.enable = true;
       lsd.enable = true;
       fzf.enable = true;
