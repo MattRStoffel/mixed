@@ -24,12 +24,19 @@
     }))
   ];
 
-  environment.systemPackages = with pkgs; [
-    neovim
-    tailscale
-  ];
-  environment.variables.EDITOR = "nvim";
-  environment.pathsToLink = ["/libexec"];
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  environment = {
+    systemPackages = with pkgs; [
+      neovim
+      tailscale
+    ];
+    variables = {
+      EDITOR = "nvim";
+    };
+    pathsToLink = ["/libexec"];
+  };
 
   services.xserver = {
     enable = true;
@@ -42,13 +49,12 @@
 
   services.tailscale.enable = true;
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "nixos";
-  networking.networkmanager.enable = true;
-  networking.wireless.iwd.enable = true;
-  networking.networkmanager.wifi.backend = "iwd";
+  networking = {
+    hostName = "nixos";
+    networkmanager.enable = true;
+    wireless.iwd.enable = true;
+    networkmanager.wifi.backend = "iwd";
+  };
 
   time.timeZone = "America/Los_Angeles";
 
