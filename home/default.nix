@@ -33,7 +33,7 @@
         legcord
         nextcloud-client
         unzip
-	# inputs.ghostty.packages."${system}".default
+	# inputs.ghostty.packages."${pkgs.system}".default
       ];
     };
     programs = {
