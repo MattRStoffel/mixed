@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -9,7 +10,6 @@
     ./kitty.nix
     ./i3.nix
   ];
-  
   programs.steam = {
     enable = true;
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
@@ -33,6 +33,7 @@
         legcord
         nextcloud-client
         unzip
+	# inputs.ghostty.packages."${system}".default
       ];
     };
     programs = {
