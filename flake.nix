@@ -7,14 +7,15 @@
     home.url = "github:nix-community/home-manager";
     ghostty.url = "github:ghostty-org/ghostty";
   };
-
-  outputs = {nixpkgs, hardware, home, ghostty, ...} : {
+  outputs = {nixpkgs, hardware, home, ghostty, ...} @inputs: 
+    {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [
 	hardware.nixosModules.apple-t2
         ./configuration.nix
 	home.nixosModules.home-manager
       ];
+      specialArgs = { inherit inputs; };
     };
   };
 }

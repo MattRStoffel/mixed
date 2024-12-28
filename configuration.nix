@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -48,6 +49,8 @@
   };
 
   services.tailscale.enable = true;
+
+  home-manager.extraSpecialArgs = { inherit inputs; };
 
   networking = {
     hostName = "nixos";

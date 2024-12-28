@@ -28,12 +28,12 @@
 	"llt" ="lsd -l --tree";
       };
       stateVersion = "24.11";
-      packages = with pkgs; [
-        zoom-us
-        legcord
-        nextcloud-client
-        unzip
-	# inputs.ghostty.packages."${pkgs.system}".default
+      packages = [
+        pkgs.zoom-us
+        pkgs.legcord
+        pkgs.nextcloud-client
+        pkgs.unzip
+	inputs.ghostty.packages."${pkgs.system}".default
       ];
     };
     programs = {
