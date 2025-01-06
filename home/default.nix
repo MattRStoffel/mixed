@@ -5,10 +5,10 @@
 }: {
   imports = [
     ./fonts.nix
-    ./nextcloud.nix
+    # ./nextcloud.nix
     ./nvim
-    ./kitty.nix
-    ./i3.nix
+    # ./kitty.nix
+    # ./i3.nix
   ];
   programs.steam = {
     enable = true;
@@ -26,13 +26,13 @@
 	"lt" = "lsd --tree";
 	"lla" ="lsd -la";
 	"llt" ="lsd -l --tree";
+	"llat" ="lsd -la --tree";
       };
       stateVersion = "24.11";
       packages = [
         pkgs.zoom-us
         pkgs.legcord
         pkgs.nextcloud-client
-        pkgs.unzip
 	inputs.ghostty.packages."${pkgs.system}".default
       ];
     };
