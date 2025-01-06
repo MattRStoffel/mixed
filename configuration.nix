@@ -44,7 +44,7 @@
     xkb.layout = "us";
     displayManager.gdm.enable = true;
     desktopManager.plasma5.enable = true;
-    windowManager.hypr.enable = true;
+    # displayManager.defaultSession = "plasma(wayland)";
   };
 
   services.tailscale.enable = true;
