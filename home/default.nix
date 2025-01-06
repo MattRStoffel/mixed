@@ -7,8 +7,8 @@
     ./fonts.nix
     # ./nextcloud.nix
     ./nvim
-    # ./kitty.nix
-    # ./i3.nix
+    ./kitty.nix
+    ./i3.nix
   ];
   programs.steam = {
     enable = true;
