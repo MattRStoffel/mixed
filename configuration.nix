@@ -48,6 +48,7 @@
   };
 
   services.tailscale.enable = true;
+  services.ollama.enable = true;
 
   home-manager.extraSpecialArgs = { inherit inputs; };
 
