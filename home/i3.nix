@@ -65,7 +65,7 @@
   	  { command = "pactl set-source-mute @DEFAULT_SOURCE@ toggle"; notification = false; }
         ];
 
-	terminal = "kitty";
+	terminal = "ghostty";
 
         bars = [
           {
