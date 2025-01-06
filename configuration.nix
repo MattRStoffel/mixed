@@ -44,7 +44,6 @@
     xkb.layout = "us";
     displayManager.gdm.enable = true;
     desktopManager.plasma5.enable = true;
-    windowManager.i3.enable = true;
   };
 
   services.tailscale.enable = true;
