@@ -29,7 +29,7 @@
     # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = false;
+    open = true;
 
     # Enable the Nvidia settings menu,
     # accessible via `nvidia-settings`.
@@ -40,7 +40,7 @@
 
     # Use Nvidia Prime to choose which GPU (iGPU or eGPU) to use.
     prime = {
-        sync.enable = false;
+        sync.enable = true;
         allowExternalGpu = true;
 
         # Make sure to use the correct Bus ID values for your system!
