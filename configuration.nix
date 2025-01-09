@@ -35,8 +35,11 @@
     ];
     variables = {
       EDITOR = "nvim";
+      XCURSOR_SIZE = "32";
+      HYPRCURSOR_SIZE = "32";
     };
     pathsToLink = ["/libexec"];
+
   };
 
   services.xserver = {
