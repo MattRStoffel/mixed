@@ -34,6 +34,7 @@
         pkgs.legcord
         pkgs.nextcloud-client
         pkgs.unzip
+	pkgs.vlc
 	inputs.ghostty.packages."${pkgs.system}".default
       ];
     };
