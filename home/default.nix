@@ -35,6 +35,7 @@
         pkgs.nextcloud-client
         pkgs.unzip
 	pkgs.vlc
+	pkgs.libreoffice
 	inputs.ghostty.packages."${pkgs.system}".default
       ];
     };
