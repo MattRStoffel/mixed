@@ -47,6 +47,7 @@
       fd.enable = true;
       ripgrep.enable = true;
       starship.enable = true;
+      htop.enable = true;
       git = {
         enable = true;
 	userName = "MattRStoffel";
