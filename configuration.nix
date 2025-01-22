@@ -48,6 +48,7 @@
     displayManager.gdm.enable = true;
     desktopManager.plasma5.enable = true;
     displayManager.defaultSession = "plasmawayland";
+    windowManager.hypr.enable = true;
   };
 
   services.tailscale.enable = true;
