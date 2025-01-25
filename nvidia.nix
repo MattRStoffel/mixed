@@ -33,14 +33,14 @@
 
     # Enable the Nvidia settings menu,
     # accessible via `nvidia-settings`.
-    nvidiaSettings = true;
+    nvidiaSettings = false;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.latest;
 
     # Use Nvidia Prime to choose which GPU (iGPU or eGPU) to use.
     prime = {
-        sync.enable = true;
+        sync.enable = false;
         allowExternalGpu = true;
 
         # Make sure to use the correct Bus ID values for your system!
