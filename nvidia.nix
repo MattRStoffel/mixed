@@ -44,7 +44,7 @@
         allowExternalGpu = true;
 
         # Make sure to use the correct Bus ID values for your system!
-        nvidiaBusId = "PCI:127:0:0";
+        nvidiaBusId = "PCI:60:0:0";
         intelBusId = "PCI:0:2:0";
     };
   };
