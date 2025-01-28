@@ -131,6 +131,11 @@ in
         gopls
         golangci-lint
         delve
+
+	# Haskell
+	haskell-language-server
+	hlint
+	stylish-haskell
   
         # Additional
 	texliveMedium
