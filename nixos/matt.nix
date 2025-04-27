@@ -1,8 +1,6 @@
-{
-  ...
-}: {
+{...}: {
   imports = [
-    ./home
+    ../home
   ];
 
   users.users.matt = {

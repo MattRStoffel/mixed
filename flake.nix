@@ -33,7 +33,7 @@
 
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [
-        ./configuration.nix
+        ./nixos
         hardware.nixosModules.apple-t2
         home-manager.nixosModules.home-manager
       ];

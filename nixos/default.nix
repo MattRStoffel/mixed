@@ -4,8 +4,7 @@
   ...
 }: {
   imports = [
-    ./hardware-configuration.nix
-    ./mixer.nix
+    ../hardware-configuration.nix
     ./matt.nix
     ./nvidia.nix
   ];
@@ -39,7 +38,6 @@
       HYPRCURSOR_SIZE = "32";
     };
     pathsToLink = ["/libexec"];
-
   };
 
   services.xserver = {
@@ -54,7 +52,7 @@
   services.tailscale.enable = true;
   services.ollama.enable = true;
 
-  home-manager.extraSpecialArgs = { inherit inputs; };
+  home-manager.extraSpecialArgs = {inherit inputs;};
 
   networking = {
     hostName = "nixos";

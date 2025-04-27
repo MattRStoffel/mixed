@@ -88,7 +88,6 @@
       extraPackages = with pkgs; [
         nodejs
         nodePackages.typescript-language-server
-        harper
 
         # Python
         pyright
