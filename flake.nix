@@ -1,5 +1,5 @@
 {
-  description = "nixos config";
+  description = "mixed";
 
   inputs = {
     hardware.url = "github:NixOS/nixos-hardware";

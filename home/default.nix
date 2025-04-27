@@ -5,57 +5,84 @@
 }: {
   imports = [
     ./fonts.nix
-    ./nextcloud.nix
+    # ./nextcloud.nix
     ./nvim
-    ./kitty.nix
-    ./i3.nix
+    # ./kitty.nix
+    # ./i3.nix
   ];
-  programs.steam = {
-    enable = true;
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+
+  users.users.matt = {
+    name = "matt";
+    home = "/Users/matt";
   };
+
+  # programs.steam = {
+  #   enable = true;
+  #   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  #   localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  # };
   home-manager.users.matt = {
-    
     home = {
+      stateVersion = "24.11";
       shellAliases = {
         ":q" = "exit";
-	"ls" = "lsd";
-	"la" = "lsd -a";
-	"ll" = "lsd -l";
-	"lt" = "lsd --tree";
-	"lla" ="lsd -la";
-	"llt" ="lsd -l --tree";
-	"llat" ="lsd -la --tree";
+        "l" = "lsd";
+        "ls" = "lsd";
+        "la" = "lsd -a";
+        "ll" = "lsd -l";
+        "lt" = "lsd --tree";
+        "lla" = "lsd -la";
+        "lltt" = "lsd -l --tree";
+        "llt" = "lsd -l --tree --depth 2";
+        "llatt" = "lsd -la --tree";
+        "llat" = "lsd -la --tree --depth 2";
+        "cat" = "bat";
+        "dog" = "bat";
+        "benji" = "dog";
+        "build" = "zig build -Dtarget=aarch64-linux-musl";
       };
-      stateVersion = "24.11";
-      packages = [
-        pkgs.zoom-us
-        pkgs.legcord
-        pkgs.nextcloud-client
-        pkgs.unzip
-	pkgs.vlc
-	pkgs.libreoffice
-	inputs.ghostty.packages."${pkgs.system}".default
-      ];
+
+      # packages = [
+      #   pkgs.zoom-us
+      #   pkgs.legcord
+      #   pkgs.nextcloud-client
+      #   pkgs.unzip
+      #   pkgs.vlc
+      #   pkgs.libreoffice
+      #   inputs.ghostty.packages."${pkgs.system}".default
+      # ];
     };
     programs = {
       bat.enable = true;
-      firefox.enable = true;
+      direnv = {
+        enable = true;
+        enableBashIntegration = true;
+        enableZshIntegration = true;
+        nix-direnv.enable = true;
+        config.hide_env_diff = true;
+      };
       lsd.enable = true;
       fzf.enable = true;
       fd.enable = true;
       ripgrep.enable = true;
-      starship.enable = true;
+      starship = {
+        enable = true;
+        enableBashIntegration = true;
+        enableZshIntegration = true;
+      };
       htop.enable = true;
+      bottom.enable = true;
+      btop.enable = true;
       git = {
         enable = true;
-	userName = "MattRStoffel";
-	userEmail = "Matt@MrStoffel.com";
+        userName = "MattRStoffel";
+        userEmail = "Matt@MrStoffel.com";
       };
+      zsh.enable = true;
       zoxide = {
         enable = true;
         enableBashIntegration = true;
+        enableZshIntegration = true;
       };
     };
   };
