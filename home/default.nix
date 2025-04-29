@@ -9,8 +9,12 @@
     ./nvim
     # ./kitty.nix
     # ./i3.nix
+    ./zsh.nix
   ];
 
+  environment.systemPackages = [
+    pkgs.entr
+  ];
   users.users.matt = {
     name = "matt";
     home = "/Users/matt";
@@ -71,6 +75,7 @@
         enableZshIntegration = true;
       };
       htop.enable = true;
+      fastlane.enable = true;
       bottom.enable = true;
       btop.enable = true;
       git = {
@@ -78,7 +83,6 @@
         userName = "MattRStoffel";
         userEmail = "Matt@MrStoffel.com";
       };
-      zsh.enable = true;
       zoxide = {
         enable = true;
         enableBashIntegration = true;
