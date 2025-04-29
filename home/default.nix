@@ -1,30 +1,19 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{...}: {
   imports = [
+    ./direnv.nix
     ./fonts.nix
-    # ./nextcloud.nix
+    ./git.nix
     ./nvim
-    # ./kitty.nix
-    # ./i3.nix
+    ./starship.nix
+    ./steam.nix
+    ./zoxide.nix
     ./zsh.nix
   ];
 
-  environment.systemPackages = [
-    pkgs.entr
-  ];
   users.users.matt = {
     name = "matt";
     home = "/Users/matt";
   };
-
-  # programs.steam = {
-  #   enable = true;
-  #   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  #   localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-  # };
   home-manager.users.matt = {
     home = {
       stateVersion = "24.11";
@@ -40,54 +29,22 @@
         "llt" = "lsd -l --tree --depth 2";
         "llatt" = "lsd -la --tree";
         "llat" = "lsd -la --tree --depth 2";
+        "top" = "btop";
+        "htop" = "btop";
         "cat" = "bat";
         "dog" = "bat";
         "benji" = "dog";
         "build" = "zig build -Dtarget=aarch64-linux-musl";
       };
-
-      # packages = [
-      #   pkgs.zoom-us
-      #   pkgs.legcord
-      #   pkgs.nextcloud-client
-      #   pkgs.unzip
-      #   pkgs.vlc
-      #   pkgs.libreoffice
-      #   inputs.ghostty.packages."${pkgs.system}".default
-      # ];
     };
     programs = {
       bat.enable = true;
-      direnv = {
-        enable = true;
-        enableBashIntegration = true;
-        enableZshIntegration = true;
-        nix-direnv.enable = true;
-        config.hide_env_diff = true;
-      };
       lsd.enable = true;
       fzf.enable = true;
       fd.enable = true;
       ripgrep.enable = true;
-      starship = {
-        enable = true;
-        enableBashIntegration = true;
-        enableZshIntegration = true;
-      };
-      htop.enable = true;
       fastlane.enable = true;
-      bottom.enable = true;
       btop.enable = true;
-      git = {
-        enable = true;
-        userName = "MattRStoffel";
-        userEmail = "Matt@MrStoffel.com";
-      };
-      zoxide = {
-        enable = true;
-        enableBashIntegration = true;
-        enableZshIntegration = true;
-      };
     };
   };
 }
