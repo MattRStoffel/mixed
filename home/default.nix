@@ -1,20 +1,12 @@
 {...}: {
-  imports = [
-    ./direnv.nix
-    ./fonts.nix
-    ./git.nix
-    ./nvim
-    ./starship.nix
-    ./steam.nix
-    ./zoxide.nix
-    ./zsh.nix
-  ];
-
   users.users.matt = {
     name = "matt";
     home = "/Users/matt";
   };
   home-manager.users.matt = {
+    imports = [
+      ./fonts.nix
+    ];
     home = {
       stateVersion = "24.11";
       shellAliases = {
@@ -36,15 +28,6 @@
         "benji" = "dog";
         "build" = "zig build -Dtarget=aarch64-linux-musl";
       };
-    };
-    programs = {
-      bat.enable = true;
-      lsd.enable = true;
-      fzf.enable = true;
-      fd.enable = true;
-      ripgrep.enable = true;
-      fastlane.enable = true;
-      btop.enable = true;
     };
   };
 }
