@@ -26,6 +26,7 @@
       system = "x86_64-darwin";
       modules = [
         ./darwin
+				./home
         home-manager.darwinModules.home-manager
       ];
       specialArgs = {
@@ -37,6 +38,7 @@
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [
         ./nixos
+				./home
         hardware.nixosModules.apple-t2
         home-manager.nixosModules.home-manager
       ];

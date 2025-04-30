@@ -1,14 +1,12 @@
 {...}: {
-  users.users.matt = {
-    name = "matt";
-    home = "/Users/matt";
-  };
+  imports = [
+    ./fonts.nix
+    ./nvim
+  ];
   home-manager.users.matt = {
     imports = [
-      ./fonts.nix
       ./direnv.nix
       ./git.nix
-      ./nvim
       ./starship.nix
       ./zoxide.nix
       ./zsh.nix

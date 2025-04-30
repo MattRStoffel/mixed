@@ -86,51 +86,51 @@
 
       # All the language servers
       extraPackages = with pkgs; [
-        nodejs
-        nodePackages.typescript-language-server
-
-        # Swift
-        sourcekit-lsp
-
-        # Lua
-        luajitPackages.lua-lsp
-        stylua
-
-        # Nix
-        nil
-        alejandra
-
-        # C, C++
-        clang-tools
-        ccls
-        cppcheck
-        bear
-
-        # Shell scripting
-        shfmt
-        shellcheck
-
-        # Go
-        go
-        gopls
-        golangci-lint
-        delve
-
-        # GLSL
-        glsl_analyzer
-
-        # Haskell
-        hlint
-        stylish-haskell
-
-        # Astro
-        astro-language-server
-
-        # Additional
-        texliveMedium
-        texlab
-        codespell
-        gitlint
+        # nodejs
+        # nodePackages.typescript-language-server
+        #
+        # # Swift
+        # sourcekit-lsp
+        #
+        # # Lua
+        # luajitPackages.lua-lsp
+        # stylua
+        #
+        # # Nix
+        # nil
+        # alejandra
+        #
+        # # C, C++
+        # clang-tools
+        # ccls
+        # cppcheck
+        # bear
+        #
+        # # Shell scripting
+        # shfmt
+        # shellcheck
+        #
+        # # Go
+        # go
+        # gopls
+        # golangci-lint
+        # delve
+        #
+        # # GLSL
+        # glsl_analyzer
+        #
+        # # Haskell
+        # hlint
+        # stylish-haskell
+        #
+        # # Astro
+        # astro-language-server
+        #
+        # # Additional
+        # texliveMedium
+        # texlab
+        # codespell
+        # gitlint
 
         # Telescope dependencies
         ripgrep
