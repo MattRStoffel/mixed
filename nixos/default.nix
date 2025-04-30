@@ -9,9 +9,6 @@
     ./nvidia.nix
   ];
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  nixpkgs.config.allowUnfree = true;
-
   # Make the macbook-pro work
   hardware.firmware = [
     (pkgs.stdenvNoCC.mkDerivation (final: {

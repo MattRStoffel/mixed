@@ -10,7 +10,6 @@
       ./git.nix
       ./nvim
       ./starship.nix
-      # ./steam.nix
       ./zoxide.nix
       ./zsh.nix
     ];
@@ -20,12 +19,10 @@
       fzf.enable = true;
       fd.enable = true;
       ripgrep.enable = true;
-      fastlane.enable = true;
       btop.enable = true;
     };
 
     home = {
-      stateVersion = "24.11";
       shellAliases = {
         ":q" = "exit";
         "l" = "lsd";
@@ -45,6 +42,7 @@
         "benji" = "dog";
         "build" = "zig build -Dtarget=aarch64-linux-musl";
       };
+      stateVersion = "24.11";
     };
   };
 }
