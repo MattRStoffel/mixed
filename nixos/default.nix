@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ../hardware-configuration.nix
+    ./hardware-configuration.nix
     ./matt.nix
     ./nvidia.nix
   ];
@@ -48,17 +48,6 @@
 
   services.tailscale.enable = true;
   services.ollama.enable = true;
-
-  home-manager.extraSpecialArgs = {inherit inputs;};
-
-  networking = {
-    hostName = "nixos";
-    networkmanager.enable = true;
-    wireless.iwd.enable = true;
-    networkmanager.wifi.backend = "iwd";
-  };
-
-  time.timeZone = "America/Los_Angeles";
 
   system.stateVersion = "24.11";
 }

@@ -19,14 +19,12 @@
     ghostty,
     ...
   } @ inputs: {
-    nix.settings.experimental-features = ["nix-command" "flakes"];
-    nixpkgs.config.allowUnfree = true;
-
     darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
       system = "x86_64-darwin";
       modules = [
         ./darwin
 				./home
+				./shared
         home-manager.darwinModules.home-manager
       ];
       specialArgs = {
@@ -39,10 +37,11 @@
       modules = [
         ./nixos
 				./home
+				./shared
         hardware.nixosModules.apple-t2
         home-manager.nixosModules.home-manager
       ];
-      specialArgs = {inherit inputs;};
+      specialArgs = {inherit inputs; self = self;};
     };
   };
 }

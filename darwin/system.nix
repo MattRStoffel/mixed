@@ -58,16 +58,4 @@
       };
     };
   };
-
-  networking = {
-    computerName = "macbook";
-    hostName = "macbook";
-    localHostName = "macbook";
-  };
-
-  power.sleep = {
-    display = 20;
-    harddisk = 30;
-    computer = 45;
-  };
 }

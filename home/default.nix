@@ -7,6 +7,7 @@
     imports = [
       ./direnv.nix
       ./git.nix
+			./ghostty.nix
       ./starship.nix
       ./zoxide.nix
       ./zsh.nix
@@ -21,6 +22,9 @@
     };
 
     home = {
+			sessionVariables = {
+			  XDG_CONFIG_HOME = "$HOME/.config";
+			};
       shellAliases = {
         ":q" = "exit";
         "l" = "lsd";
