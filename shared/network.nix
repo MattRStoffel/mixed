@@ -1,13 +1,15 @@
-{ config, lib, ... }:
-
-let
-  # Get the hostname from the flake reference
-  hostname = builtins.head (lib.splitString "." config.system);
-in {
-  networking = {
-    computerName = hostname;
-    hostName = hostname;
-    localHostName = hostname;
-	};
+{ pkgs, ... }: {
+  networking = (if pkgs.stdenv.isDarwin then {
+    computerName = "macbook";
+    hostName = "macbook";
+    localHostName = "macbook";
+	} else {
+    computerName = "nixos";
+    hostName = "nixos";
+    localHostName = "nixos";
+	  networkmanager.enable = true;
+	  wireless.iwd.enable = true;
+	  networkmanager.wifi.backend = "iwd";
+});
 
 }

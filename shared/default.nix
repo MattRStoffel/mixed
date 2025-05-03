@@ -1,5 +1,6 @@
 { ... }: {
 	imports = [
+		./matt.nix
 		./power.nix
 		./network.nix
 	];

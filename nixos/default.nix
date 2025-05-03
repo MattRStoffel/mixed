@@ -5,8 +5,6 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./matt.nix
-    ./nvidia.nix
   ];
 
   # Make the macbook-pro work

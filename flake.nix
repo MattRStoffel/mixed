@@ -28,20 +28,20 @@
         home-manager.darwinModules.home-manager
       ];
       specialArgs = {
-        inherit inputs;
-        self = self;
+        inherit inputs self;
+				machineName = "macbook";
       };
     };
 
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [
+				./shared
         ./nixos
 				./home
-				./shared
         hardware.nixosModules.apple-t2
         home-manager.nixosModules.home-manager
       ];
-      specialArgs = {inherit inputs; self = self;};
+      specialArgs = {inherit inputs self;};
     };
   };
 }
