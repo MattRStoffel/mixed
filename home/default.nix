@@ -17,7 +17,7 @@ in {
     imports =
       utilImports
       ++ devImports
-      ++ [./dev/nvim];
+      ++ [./apps/nvim];
 
     home = {
       sessionVariables = {

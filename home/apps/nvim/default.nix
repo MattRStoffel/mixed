@@ -69,15 +69,15 @@
         config = builtins.readFile ./plugins/noice.lua;
       }
 
-      # # Copilot
-      # {
-      #   plugin = copilot-lua;
-      #   type = "lua";
-      #   config = builtins.readFile ./plugins/copilot.lua;
-      # }
-      # CopilotChat-nvim
-      # plenary-nvim # for CopilotChat-nvim
-      # copilot-lualine
+      # Copilot
+      {
+        plugin = copilot-lua;
+        type = "lua";
+        config = builtins.readFile ./plugins/copilot.lua;
+      }
+      CopilotChat-nvim
+      plenary-nvim # for CopilotChat-nvim
+      copilot-lualine
 
       # Misc
       vimtex
