@@ -15,9 +15,9 @@ in {
 
   home-manager.users.matt = {
     imports =
-      utilImports
-      ++ devImports
-      ++ [./apps/nvim];
+      [./nvim]
+      ++ utilImports
+      ++ devImports;
 
     home = {
       sessionVariables = {
