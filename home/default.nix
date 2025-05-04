@@ -10,12 +10,14 @@
   utilImports = importDir ./util;
   devImports = importDir ./dev;
   terminalImports = importDir ./terminal;
+  appImports = importDir ./apps;
 in {
   imports = terminalImports;
 
   home-manager.users.matt = {
     imports =
       [./nvim]
+      ++ appImports
       ++ utilImports
       ++ devImports;
 

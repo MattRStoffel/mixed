@@ -23,22 +23,22 @@
       system = "x86_64-darwin";
       modules = [
         ./darwin
-				./home
-				./shared
+        ./home
+        ./shared
         home-manager.darwinModules.home-manager
       ];
       specialArgs = {
         inherit inputs self;
-				machineName = "macbook";
+        machineName = "macbook";
       };
     };
 
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [
-				./shared
+        ./shared
         ./nixos
-				./home
-        hardware.nixosModules.apple-t2
+        ./home
+        # hardware.nixosModules.apple-t2
         home-manager.nixosModules.home-manager
       ];
       specialArgs = {inherit inputs self;};
