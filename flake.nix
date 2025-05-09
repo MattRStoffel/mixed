@@ -29,7 +29,6 @@
       ];
       specialArgs = {
         inherit inputs self;
-        machineName = "macbook";
       };
     };
 

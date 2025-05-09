@@ -17,7 +17,7 @@ in {
   home-manager.users.matt = {
     imports =
       [./nvim]
-      ++ appImports
+      # ++ appImports
       ++ utilImports
       ++ devImports;
 
@@ -33,7 +33,6 @@ in {
         "dog" = "bat";
         "benji" = "dog";
         "build" = "zig build -Dtarget=aarch64-linux-musl";
-        "nix_init_env" = "function _nix_init(){ nix flake init --template \"https://flakehub.com/f/the-nix-way/dev-templates/*#${1}\"; }; _nix_init";
       };
       stateVersion = "24.11";
     };
