@@ -8,7 +8,6 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    ghostty.url = "github:ghostty-org/ghostty";
   };
   outputs = {
     self,
@@ -16,7 +15,6 @@
     nix-darwin,
     home-manager,
     hardware,
-    ghostty,
     ...
   } @ inputs: {
     darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {

@@ -11,6 +11,8 @@
       "obsidian"
       "rectangle"
       "tailscale"
+      "google-chrome"
+      "steam"
     ];
     masApps = {
       Xcode = 497799835;
