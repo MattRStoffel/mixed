@@ -2,7 +2,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    initExtra = ''
+    initContent = ''
       nix_init_env() {
         nix flake init --template "https://flakehub.com/f/the-nix-way/dev-templates/*#$1"
       }
