@@ -12,26 +12,19 @@
     '';
 
     plugins = with pkgs.vimPlugins; [
-      # LSP
+      # LSP & Completions
       {
         plugin = nvim-lspconfig;
         type = "lua";
         config = builtins.readFile ./plugins/lspconfig.lua;
       }
-
-      # Completions
       {
         plugin = nvim-cmp;
         type = "lua";
         config = builtins.readFile ./plugins/cmp.lua;
       }
       cmp-nvim-lsp
-      cmp-buffer
       cmp-path
-      cmp_luasnip
-      luasnip
-
-      comment-nvim
 
       # Formatting
       {
@@ -41,8 +34,10 @@
       }
 
       # Editor
-      which-key-nvim
+      comment-nvim
       nvim-web-devicons
+      which-key-nvim
+
       {
         plugin = oil-nvim;
         type = "lua";
@@ -63,24 +58,21 @@
         type = "lua";
         config = builtins.readFile ./plugins/lualine.lua;
       }
-      {
-        plugin = noice-nvim;
-        type = "lua";
-        config = builtins.readFile ./plugins/noice.lua;
-      }
+      # {
+      #   plugin = noice-nvim;
+      #   type = "lua";
+      #   config = builtins.readFile ./plugins/noice.lua;
+      # }
 
       # Copilot
-      {
-        plugin = copilot-lua;
-        type = "lua";
-        config = builtins.readFile ./plugins/copilot.lua;
-      }
-      CopilotChat-nvim
-      plenary-nvim # for CopilotChat-nvim
-      copilot-lualine
-
-      # Misc
-      vimtex
+      # {
+      #   plugin = copilot-lua;
+      #   type = "lua";
+      #   config = builtins.readFile ./plugins/copilot.lua;
+      # }
+      # CopilotChat-nvim
+      # plenary-nvim # for CopilotChat-nvim
+      # copilot-lualine
     ];
 
     # All the language servers
@@ -103,7 +95,6 @@
       clang-tools
       ccls
       cppcheck
-      bear
 
       # Shell scripting
       shfmt
@@ -113,23 +104,12 @@
       go
       gopls
       golangci-lint
-      delve
 
-      # GLSL
-      glsl_analyzer
-
-      # Haskell
-      hlint
-      stylish-haskell
+      # Python
+      pyright
 
       # Astro
       astro-language-server
-
-      # Additional
-      texliveMedium
-      texlab
-      codespell
-      gitlint
 
       # Telescope dependencies
       ripgrep
