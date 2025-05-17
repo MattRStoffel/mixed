@@ -3,8 +3,8 @@
     enable = true;
     enableCompletion = true;
     initContent = ''
-      nix_init_env() {
-        nix flake init --template "https://flakehub.com/f/the-nix-way/dev-templates/*#$1"
+      flake() {
+      	nix flake init --template "https://flakehub.com/f/the-nix-way/dev-templates/*#$1"
       }
     '';
     # plugins = [

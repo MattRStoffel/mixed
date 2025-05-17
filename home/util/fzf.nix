@@ -9,5 +9,11 @@
     };
     enableZshIntegration = true;
     package = pkgs.fzf;
+    fileWidgetOptions = [
+      "--preview 'bat -n --color=always --line-range :500 {}'"
+    ];
+    changeDirWidgetOptions = [
+      "--preview 'lsd --tree --depth=2 {} | head -200'"
+    ];
   };
 }
