@@ -10,7 +10,7 @@
       "nextcloud"
       "obsidian"
       "rectangle"
-      "tailscale"
+      "tailscale-app"
       "google-chrome"
       "steam"
     ];

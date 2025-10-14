@@ -58,21 +58,6 @@
         type = "lua";
         config = builtins.readFile ./plugins/lualine.lua;
       }
-      # {
-      #   plugin = noice-nvim;
-      #   type = "lua";
-      #   config = builtins.readFile ./plugins/noice.lua;
-      # }
-
-      # Copilot
-      # {
-      #   plugin = copilot-lua;
-      #   type = "lua";
-      #   config = builtins.readFile ./plugins/copilot.lua;
-      # }
-      # CopilotChat-nvim
-      # plenary-nvim # for CopilotChat-nvim
-      # copilot-lualine
     ];
 
     # All the language servers
@@ -84,6 +69,8 @@
       sourcekit-lsp
 
       # Lua
+      vimPlugins.luasnip
+      lua-language-server
       luajitPackages.lua-lsp
       stylua
 
