@@ -201,6 +201,14 @@ local servers = {
             },
         },
     },
+    sourcekit = {
+        -- Use 'xcrun' to ensure it uses the Xcode-bundled version
+        cmd = { "xcrun", "sourcekit-lsp" },
+        filetypes = { "swift", "objective-c", "objective-cpp" },
+        -- Swift looks for Package.swift (SwiftPM) or .git
+        root_markers = { "Package.swift", ".git", "xcodeproj" },
+        settings = {},
+    },
 }
 
 -- Initialize Servers via Loop
