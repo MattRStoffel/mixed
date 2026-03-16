@@ -253,7 +253,56 @@ vim.api.nvim_create_autocmd("TextChangedI", {
     end,
 })
 
--- 3. Aesthetics (Tokyo Night-style colors)
-vim.api.nvim_set_hl(0, "Pmenu", { bg = "#1f2335", fg = "#a9b1d6" })
-vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#3b4261", bold = true })
-vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "#7aa2f7" })
+local colors = {
+    bg      = "#1a1b26", -- Deep Night Blue
+    bg_dark = "#16161e", -- Darker background (for statusline/pickers)
+    fg      = "#c0caf5", -- Soft Silver/Blue text
+    cyan    = "#7dcfff", -- Teal/Cyan
+    purple  = "#bb9af7", -- Violet/Purple
+    orange  = "#ff9e64", -- Orange/Peach
+    pink    = "#bb9af7", -- Pink/Magenta
+    red     = "#f7768e", -- Soft Red
+    green   = "#9ece6a", -- Sage Green
+    yellow  = "#e0af68", -- Soft Yellow
+    comment = "#565f89", -- Muted Blue-Grey
+}
+-- Ensure Termguicolors is on for hex codes to work
+vim.opt.termguicolors = true
+
+-- Helper function to make the table easier to read
+local function hl(group, options)
+    vim.api.nvim_set_hl(0, group, options)
+end
+
+-- --- Editor UI ---
+hl("Normal", { fg = colors.fg, bg = colors.bg })
+hl("CursorLine", { bg = "#292e42" })
+hl("Visual", { bg = "#283457" })
+hl("Search", { fg = colors.bg, bg = colors.yellow })
+hl("IncSearch", { fg = colors.bg, bg = colors.orange })
+hl("LineNr", { fg = "#3b4261" })
+
+-- --- Syntax Highlighting ---
+hl("Comment", { fg = colors.comment, italic = true })
+hl("Constant", { fg = colors.orange })
+hl("String", { fg = colors.green })
+hl("Identifier", { fg = colors.red })
+hl("Function", { fg = colors.cyan })
+hl("Statement", { fg = colors.purple })
+hl("PreProc", { fg = colors.cyan })
+hl("Type", { fg = colors.yellow })
+hl("Special", { fg = colors.purple })
+hl("Underlined", { underline = true })
+hl("Error", { fg = colors.red, bold = true })
+hl("Todo", { fg = colors.bg, bg = colors.cyan, bold = true })
+
+-- --- LSP & Completion (Fits your manual setup) ---
+hl("DiagnosticError", { fg = colors.red })
+hl("DiagnosticWarn", { fg = colors.yellow })
+hl("DiagnosticInfo", { fg = colors.cyan })
+hl("DiagnosticHint", { fg = colors.purple })
+
+-- Your Picker/CMP UI (Updating your existing styles)
+hl("Pmenu", { bg = colors.bg_dark, fg = colors.fg })
+hl("PmenuSel", { bg = "#3b4261", bold = true })
+
