@@ -108,23 +108,28 @@ function Picker.run(opts)
         "--ansi",
         "--reverse",
         "--bind 'ctrl-j:down,ctrl-k:up'",
+                "--expect=ctrl-v,enter",
     }
 
     local full_cmd = table.concat(base_fzf, " ") .. " " .. (opts.cmd or "")
 
     vim.fn.termopen(full_cmd, {
-        on_exit = function(_, code)
-            if code == 0 then
+            on_exit = function(_, code)
+              if code == 0 then
                 local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-                local selection = lines[1]
+
+                local key = lines[1]       -- pressed key (ctrl-v or enter)
+                local selection = lines[2] -- actual selected item
+
                 vim.api.nvim_win_close(win, true)
+
                 if selection and selection ~= "" then
-                    opts.on_select(selection)
+                  opts.on_select(selection, key)
                 end
-            else
+              else
                 vim.api.nvim_win_close(win, true)
+              end
             end
-        end
     })
     vim.cmd("startinsert")
 end
@@ -133,9 +138,13 @@ end
 function Picker.find_files()
     Picker.run({
         cmd = "--prompt '> ' --preview 'bat --style=plain --color=always {}'",
-        on_select = function(selection)
-            vim.cmd("edit " .. selection)
-        end
+                on_select = function(selection, key)
+                  if key == "ctrl-v" then
+                    vim.cmd("vsplit " .. selection)
+                  else
+                    vim.cmd("edit " .. selection)
+                  end
+                end
     })
 end
 
@@ -147,13 +156,17 @@ function Picker.live_grep()
         cmd = "--phony --delimiter ':' --prompt '> ' " ..
               "--bind 'change:reload(" .. rg_cmd .. ")' " ..
               "--preview '" .. preview_cmd .. "'",
-        on_select = function(selection)
-            local parts = vim.split(selection, ":")
-            if #parts >= 3 then
-                vim.cmd("edit " .. parts[1])
-                vim.api.nvim_win_set_cursor(0, {tonumber(parts[2]), tonumber(parts[3]) - 1})
-            end
-        end
+                on_select = function(selection, key)
+                  local parts = vim.split(selection, ":")
+                  if #parts >= 3 then
+                    if key == "ctrl-v" then
+                      vim.cmd("vsplit " .. parts[1])
+                    else
+                      vim.cmd("edit " .. parts[1])
+                    end
+                    vim.api.nvim_win_set_cursor(0, { tonumber(parts[2]), tonumber(parts[3]) - 1 })
+                  end
+                end
     })
 end
 
@@ -171,19 +184,19 @@ function LSP.on_attach(bufnr)
     local opts = { buffer = bufnr, remap = false }
 
     -- Link LSP to Omnifunc for built-in completion
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    -- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
     -- Navigation Keymaps
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
     -- Manual Trigger / Tab Navigation
-    vim.keymap.set("i", "<Tab>", function()
-        if vim.fn.pumvisible() == 1 then
-            return "<C-n>"
-        end
-        return "<C-x><C-o>"
-    end, { expr = true, replace_keycodes = true, buffer = bufnr })
+    -- vim.keymap.set("i", "<Tab>", function()
+    --     if vim.fn.pumvisible() == 1 then
+    --         return "<C-n>"
+    --     end
+    --     return "<C-x><C-o>"
+    -- end, { expr = true, replace_keycodes = true, buffer = bufnr })
 end
 
 -- Server Definitions
@@ -238,7 +251,6 @@ end
 -- ========================================================================== --
 -- ==                                 CMP                                  == --
 -- ========================================================================== --
-vim.opt_local
 -- 1. Behavior & Menu Options
 vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
 vim.opt.shortmess:append("c") -- Silence completion messages in cmdline
@@ -313,4 +325,3 @@ hl("DiagnosticHint", { fg = colors.purple })
 -- Your Picker/CMP UI (Updating your existing styles)
 hl("Pmenu", { bg = colors.bg_dark, fg = colors.fg })
 hl("PmenuSel", { bg = "#3b4261", bold = true })
-
