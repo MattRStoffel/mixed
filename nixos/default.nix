@@ -1,29 +1,14 @@
-{pkgs, ...}: {
+{ ... }: {
   imports = [
     ./hardware-configuration.nix
+    ./macbook
+    ./boot.nix
+    ./display.nix
+    ./networking.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  environment = {
-    systemPackages = with pkgs; [
-      neovim
-    ];
-    variables = {
-      EDITOR = "nvim";
-    };
-    pathsToLink = ["/libexec"];
-  };
-
-  services.desktopManager.plasma6.enable = true;
-  services.displayManager.defaultSession = "plasma";
-
-  services.xserver = {
-    enable = true;
-    xkb.layout = "us";
-    displayManager.gdm.enable = true;
-  };
+  security.polkit.enable = true;        # system-wide privilege escalation daemon
+  environment.pathsToLink = [ "/libexec" ]; # needed by GTK/D-Bus helpers
 
   system.stateVersion = "24.11";
 }

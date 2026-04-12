@@ -214,7 +214,7 @@ _nav_jump() {
     local target="$1" silent="${2:-0}"
     if [[ -d "$target" ]]; then
         cd "$target" || return 1
-        (( silent == 0 )) && echo "z: $PWD"
+        # (( silent == 0 )) && echo "z: $PWD"
         _nav_db_sync
     else
         echo "z: directory no longer exists: $target" >&2
@@ -250,7 +250,7 @@ z() {
     matches=$(_nav_search "$pattern")
 
     if [[ -z "$matches" ]]; then
-        echo "z: no match found for '$pattern'" >&2
+        # echo "z: no match found for '$pattern'" >&2
         return 1
     fi
 
@@ -264,7 +264,7 @@ z() {
     local top_match match_count
     top_match=$(head -n1 <<< "$matches" | cut -d'|' -f1)
     match_count=$(wc -l <<< "$matches")
-    (( match_count > 1 )) && echo "z: ${match_count} matches. Jumping to: $top_match"
+    # (( match_count > 1 )) && echo "z: ${match_count} matches. Jumping to: $top_match"
 
     _nav_jump "$top_match"
 }

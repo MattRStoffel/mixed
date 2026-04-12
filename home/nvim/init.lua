@@ -60,6 +60,35 @@ map("n", "<Leader>j", ":FormatJson<CR>", { desc = "Format buffer as JSON" })
 -- =============================================================================
 -- PICKER
 -- =============================================================================
+--
+-- Layout (three floating windows, no external tools):
+--
+--   ╭─────────────── Picker ────────────────╮
+--   │ > query...                            │   ← input window
+--   ╰───────────────────────────────────────╯
+--   ╭──── Results ─────╮╭───── Preview ─────╮
+--   │ ▶ src/foo.lua    ││ 1  local M = {}   │
+--   │   src/bar.lua    ││ 2                  │
+--   │   ...            ││ 3  function M...   │
+--   ╰──────────────────╯╰───────────────────╯
+--
+-- Modes:
+--   <Leader><Leader>  files  — streams `git ls-files` (or `find` fallback),
+--                             fuzzy-filters in Lua as you type.
+--   <Leader>/         grep   — re-runs `grep -rIn` on each keystroke (debounced).
+--
+-- Keys inside the picker:
+--   <Esc> / <C-c>  close
+--   <CR>           open (edit)
+--   <C-v>          open in vertical split
+--   <C-x>          open in horizontal split
+--   <C-j> / <Down> next result
+--   <C-k> / <Up>   previous result
+--
+-- .gitignore support:
+--   git repo  → `git ls-files --cached --others --exclude-standard`
+--   otherwise → `find` with manual exclusions (.git, node_modules, __pycache__)
+-- =============================================================================
 
 local Picker = (function()
     local api = vim.api

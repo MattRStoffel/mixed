@@ -1,40 +1,49 @@
-{lib, ...}: let
+{ lib, pkgs, ... }:
+let
+  # Auto-discovers .nix files in each subdirectory so you never need to
+  # manually add imports — just drop a file in the right folder.
   importDir = dir:
     builtins.map
-    (name: dir + "/${name}")
-    (builtins.attrNames (lib.filterAttrs
-      (name: type:
-        type == "regular" && builtins.match ".*\\.nix" name != null)
-      (builtins.readDir dir)));
+      (name: dir + "/${name}")
+      (builtins.attrNames (lib.filterAttrs
+        (name: type: type == "regular" && builtins.match ".*\\.nix" name != null)
+        (builtins.readDir dir)));
 
-  utilImports = importDir ./util;
-  devImports = importDir ./dev;
+  appImports      = importDir ./apps;
+  utilImports     = importDir ./util;
+  devImports      = importDir ./dev;
   terminalImports = importDir ./terminal;
-  appImports = importDir ./apps;
 in {
+
   imports = terminalImports;
+  home-manager.backupFileExtension = "backup";
 
   home-manager.users.matt = {
     imports =
-      [./nvim]
-      # ++ appImports
+      [ ./nvim ]
+      ++ appImports
       ++ utilImports
       ++ devImports;
 
     home = {
+      packages = with pkgs; [
+      ];
+
       sessionVariables = {
         XDG_CONFIG_HOME = "$HOME/.config";
+        EDITOR          = "nvim";
+        TERM            = "ghostty";
       };
+
       shellAliases = {
-        ":q" = "exit";
-        "top" = "top";
-        "htop" = "btop";
-        "cat" = "bat";
-        "dog" = "bat";
+        ":q"    = "exit";
+        "htop"  = "btop";
+        "cat"   = "bat";
+        "dog"   = "bat";
         "benji" = "dog";
-        "build" = "zig build -Dtarget=aarch64-linux-musl";
       };
-      stateVersion = "24.11";
+
+      stateVersion = "26.05";
     };
   };
 }
