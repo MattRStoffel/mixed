@@ -1,5 +1,5 @@
 {pkgs, ...}: {
   programs.bash.initExtra = ''
-    source ${./zship}
+    source ${./zship.sh}
   '';
 }
