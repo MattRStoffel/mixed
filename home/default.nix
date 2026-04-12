@@ -38,6 +38,10 @@ in {
 
       shellAliases = {
         ":q"    = "exit";
+        "htop"  = "btop";
+        "cat"   = "bat";
+        "dog"   = "bat";
+        "benji" = "dog";
       };
 
       stateVersion = "26.05";
