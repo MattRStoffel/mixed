@@ -3,11 +3,13 @@ let
   # Auto-discovers .nix files in each subdirectory so you never need to
   # manually add imports — just drop a file in the right folder.
   importDir = dir:
-    builtins.map
-      (name: dir + "/${name}")
-      (builtins.attrNames (lib.filterAttrs
-        (name: type: type == "regular" && builtins.match ".*\\.nix" name != null)
-        (builtins.readDir dir)));
+    let
+      entries = builtins.readDir dir;
+      files = lib.filterAttrs (n: t: t == "regular" && builtins.match ".*\\.nix" n != null) entries;
+      dirs  = lib.filterAttrs (n: t: t == "directory") entries;
+    in
+      builtins.map (name: dir + "/${name}") (builtins.attrNames files)
+      ++ builtins.map (name: dir + "/${name}") (builtins.attrNames dirs);
 
   appImports      = importDir ./apps;
   utilImports     = importDir ./util;
@@ -19,8 +21,7 @@ in {
   home-manager.backupFileExtension = "backup";
 
   home-manager.users.matt = {
-    imports =
-      [ ./nvim ]
+    imports = []
       ++ appImports
       ++ utilImports
       ++ devImports;
