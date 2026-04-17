@@ -26,7 +26,7 @@
       modules = [
         ./shared                              # shared: nix settings, user, timezone
         ./darwin                              # macOS: Dock, Finder, Homebrew, etc.
-        ./home                               # home-manager: dotfiles & user programs
+        ./home                                # home-manager: dotfiles & user programs
         home-manager.darwinModules.home-manager
       ];
       specialArgs = { inherit inputs self; };
@@ -35,7 +35,7 @@
     # ── NixOS ────────────────────────────────────────────────────────────────
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [
-        ./shared                              # shared: nix settings, user, timezone
+        ./shared                             # shared: nix settings, user, timezone
         ./nixos                              # linux: boot, display, networking
         ./home                               # home-manager: dotfiles & user programs
         hardware.nixosModules.apple-t2       # Apple T2 kernel patches
