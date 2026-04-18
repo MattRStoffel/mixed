@@ -40,8 +40,8 @@
       layer = "top";
       position = "top";
       margin-top = 10;
-      margin-left = 30;
-      margin-right = 30;
+      margin-left = 10;
+      margin-right = 10;
       spacing = 8; # Gap between modules
 
       modules-left = [ "sway/mode" ];
