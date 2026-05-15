@@ -15,5 +15,9 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
+hardware.bluetooth.enable = true;
+services.blueman.enable = true;
+virtualisation.docker.enable = true;
+users.users.matt.extraGroups = [ "docker" ];
   system.stateVersion = "24.11";
 }

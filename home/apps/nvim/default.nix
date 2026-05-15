@@ -5,8 +5,6 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-  };
-  home.file = {
-    ".config/nvim/init.lua".text = builtins.readFile ./init.lua;
+    initLua = builtins.readFile ./init.lua;
   };
 }

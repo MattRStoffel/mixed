@@ -14,6 +14,7 @@
       startup = [
         { command = "systemctl --user restart waybar"; always = true; }
         { command = "swaybg -i /home/matt/.config/desktop.png -m fill"; always = true;}
+        { command = "blueman-tray"; always = true;}
       ];
     };
     extraConfig = ''
@@ -53,24 +54,16 @@
         all-outputs = true;
         format = "{icon}";
         format-icons = {
-          "1" = "";
-          "2" = "";
-          "3" = "";
-          "4" = "";
+          # "1" = "";
+          # "2" = "";
+          # "3" = "";
+          # "4" = "";
           "default" = "";
         };
       };
 
       tray = {
         spacing = 5; # Adjust this number for more or less space
-      };
-
-      "sway/window" = {
-        format = "󱂬  {}";
-        max-length = 50;
-        rewrite = {
-           "" = "Empty Space";
-        };
       };
 
       battery = { 
@@ -89,12 +82,24 @@
         format-disconnected = "󰖪";
       };
 
-      pulseaudio = {
-        format = "{icon}  {volume}%";
-        format-muted = "󰝟";
-        format-icons = { default = ["" "" ""]; };
-        on-click = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        pulseaudio = {
+      format = "{volume}% {icon} {format_source}";
+      format-bluetooth = "{volume}% {icon} {format_source}";
+      format-bluetooth-muted = " {icon} {format_source}";
+      format-muted = " {format_source}";
+      format-source = "{volume}% ";
+      format-source-muted = "";
+      format-icons = {
+        headphone = "";
+        hands-free = "";
+        headset = "";
+        phone = "";
+        portable = "";
+        car = "";
+        default = [ "" "" "" ];
       };
+      on-click = "${pkgs.pavucontrol}/bin/pavucontrol"; # Requires pavucontrol installed
+    };
     }];
 
     style = ''
@@ -206,5 +211,6 @@ programs.fuzzel = {
   };
 home.packages = with pkgs; [
   swaybg
+  pavucontrol
 ];
 }
