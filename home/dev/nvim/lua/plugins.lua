@@ -19,44 +19,36 @@ require("lazy").setup({
     "williamboman/mason-lspconfig.nvim",
     dependencies = {
       "williamboman/mason.nvim",
-      "neovim/nvim-lspconfig",
+      "neovim/nvim-lspconfig",   -- registers default server configs into vim.lsp.config
       "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-      local on_attach = function(_, bufnr)
-        local map  = vim.keymap.set
-        local opts = { buffer = bufnr }
-        map("n", "gd",          vim.lsp.buf.definition,  opts)
-        map("n", "K",           vim.lsp.buf.hover,       opts)
-        map("n", "gr",          vim.lsp.buf.references,  opts)
-        map("n", "<leader>rn",  vim.lsp.buf.rename,      opts)
-        map("n", "<leader>ca",  vim.lsp.buf.code_action, opts)
-      end
+      -- Global defaults applied to every server — no per-server setup() calls needed.
+      vim.lsp.config("*", {
+        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        on_attach    = function(_, bufnr)
+          local map  = vim.keymap.set
+          local opts = { buffer = bufnr }
+          map("n", "gd",          vim.lsp.buf.definition,  opts)
+          map("n", "K",           vim.lsp.buf.hover,       opts)
+          map("n", "gr",          vim.lsp.buf.references,  opts)
+          map("n", "<leader>rn",  vim.lsp.buf.rename,      opts)
+          map("n", "<leader>ca",  vim.lsp.buf.code_action, opts)
+        end,
+      })
 
       require("mason-lspconfig").setup({
         ensure_installed = { "pyright", "hls" },
-        handlers = {
-          function(server_name)
-            require("lspconfig")[server_name].setup({
-              capabilities = capabilities,
-              on_attach    = on_attach,
-            })
-          end,
-        },
+        automatic_enable = true,
       })
 
       -- sourcekit ships with Xcode (xcrun) so mason can't install it.
-      require("lspconfig").sourcekit.setup({
+      vim.lsp.config("sourcekit", {
         cmd          = { "xcrun", "sourcekit-lsp" },
-        capabilities = capabilities,
-        on_attach    = on_attach,
         filetypes    = { "swift", "objective-c", "objective-cpp" },
-        root_dir     = require("lspconfig.util").root_pattern(
-          "Package.swift", "*.xcodeproj", ".git"
-        ),
+        root_markers = { "Package.swift", "*.xcodeproj", ".git" },
       })
+      vim.lsp.enable("sourcekit")
     end,
   },
 
