@@ -11,20 +11,23 @@ let
       builtins.map (name: dir + "/${name}") (builtins.attrNames files)
       ++ builtins.map (name: dir + "/${name}") (builtins.attrNames dirs);
 
-  appImports      = importDir ./apps;
-  utilImports     = importDir ./util;
-  devImports      = importDir ./dev;
-  terminalImports = importDir ./terminal;
+  appImports     = importDir ./apps;
+  shellImports   = importDir ./shell;
+  cliImports     = importDir ./cli;
+  devImports     = importDir ./dev;
+  desktopImports = importDir ./desktop;
 in {
 
-  imports = terminalImports;
+  imports = [ ./fonts.nix ];
   home-manager.backupFileExtension = "backup";
 
   home-manager.users.matt = {
     imports = []
       ++ appImports
-      ++ utilImports
-      ++ devImports;
+      ++ shellImports
+      ++ cliImports
+      ++ devImports
+      ++ desktopImports;
 
     home = {
       packages = with pkgs; [
