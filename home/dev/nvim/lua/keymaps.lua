@@ -20,3 +20,15 @@ map("n", "<Leader>j", ":FormatJson<CR>", { desc = "Format buffer as JSON" })
 map("n", "<Leader><Leader>", function() require("telescope.builtin").find_files() end, { desc = "Telescope: find files" })
 map("n", "<Leader>/",        function() require("telescope.builtin").live_grep()  end, { desc = "Telescope: live grep"  })
 map("n", "<Leader>b",        function() require("telescope.builtin").buffers()    end, { desc = "Telescope: buffers"    })
+
+-- LSP (buffer-local, set whenever a server attaches)
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(event)
+    local opts = { buffer = event.buf }
+    map("n", "gd",          vim.lsp.buf.definition,  opts)
+    map("n", "K",           vim.lsp.buf.hover,       opts)
+    map("n", "gr",          vim.lsp.buf.references,  opts)
+    map("n", "<leader>rn",  vim.lsp.buf.rename,      opts)
+    map("n", "<leader>ca",  vim.lsp.buf.code_action, opts)
+  end,
+})
