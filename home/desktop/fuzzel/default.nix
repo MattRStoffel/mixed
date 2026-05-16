@@ -1,6 +1,6 @@
 { ... }:
 let
-  theme = import ../theme.nix;
+  theme = import ../../theme.nix;
   c = theme.colors;
   f = theme.fonts;
 in
@@ -9,10 +9,10 @@ in
     enable = true;
     settings = {
       main = {
-        font         = "${f.ui}:size=${toString f.size}";
-        prompt       = "'❯  '";
-        terminal     = "ghostty";
-        width        = 40;
+        font           = "${f.ui}:size=${toString f.size}";
+        prompt         = "'❯  '";
+        terminal       = "ghostty";
+        width          = 40;
         horizontal-pad = 20;
         vertical-pad   = 15;
         inner-pad      = 10;
