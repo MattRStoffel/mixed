@@ -1,53 +1,70 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 let
-  # Auto-discovers .nix files in each subdirectory so you never need to
-  # manually add imports — just drop a file in the right folder.
   importDir = dir:
     let
       entries = builtins.readDir dir;
-      files = lib.filterAttrs (n: t: t == "regular" && builtins.match ".*\\.nix" n != null) entries;
-      dirs  = lib.filterAttrs (n: t: t == "directory") entries;
+      files   = lib.filterAttrs (n: t: t == "regular" && builtins.match ".*\\.nix" n != null) entries;
+      dirs    = lib.filterAttrs (n: t: t == "directory") entries;
     in
-      builtins.map (name: dir + "/${name}") (builtins.attrNames files)
-      ++ builtins.map (name: dir + "/${name}") (builtins.attrNames dirs);
+      map (name: dir + "/${name}") (builtins.attrNames files)
+      ++ map (name: dir + "/${name}") (builtins.attrNames dirs);
 
-  appImports     = importDir ./apps;
-  shellImports   = importDir ./shell;
-  cliImports     = importDir ./cli;
-  devImports     = importDir ./dev;
-  desktopImports = importDir ./desktop;
+  hmBundles = {
+    shell   = importDir ./shell;
+    cli     = importDir ./cli;
+    dev     = importDir ./dev;
+    desktop = importDir ./desktop;
+    apps    = importDir ./apps;
+  };
+
+  mkHmImports = username:
+    let disabled = lib.attrByPath [ username "disabledBundles" ] [] config.myHome.users; in
+    lib.flatten (lib.mapAttrsToList (name: paths:
+      lib.optionals (!builtins.elem name disabled) paths
+    ) hmBundles);
+
 in {
+  # imports must not reference `config` — always load gaming modules
+  # unconditionally and let them use mkIf internally to gate their effects.
+  imports = [ ./fonts.nix ] ++ importDir ./gaming;
 
-  imports = [ ./fonts.nix ];
-  home-manager.backupFileExtension = "backup";
-
-  home-manager.users.matt = {
-    imports = []
-      ++ appImports
-      ++ shellImports
-      ++ cliImports
-      ++ devImports
-      ++ desktopImports;
-
-    home = {
-      packages = with pkgs; [
-      ];
-
-      sessionVariables = {
-        XDG_CONFIG_HOME = "$HOME/.config";
-        EDITOR          = "nvim";
-        TERM            = "ghostty";
+  options.myHome.users = lib.mkOption {
+    default     = {};
+    description = "Per-user home-manager bundle configuration.";
+    type = lib.types.attrsOf (lib.types.submodule {
+      options.disabledBundles = lib.mkOption {
+        type        = lib.types.listOf lib.types.str;
+        default     = [];
+        description = "Bundles to skip: shell, cli, dev, desktop, apps, gaming";
       };
+    });
+  };
 
-      shellAliases = {
-        ":q"    = "exit";
-        "htop"  = "btop";
-        "cat"   = "bat";
-        "dog"   = "bat";
-        "benji" = "dog";
+  config = {
+    home-manager.backupFileExtension = "backup";
+
+    home-manager.users.matt = {
+      imports = mkHmImports "matt";
+
+      home = {
+        packages = with pkgs; [];
+
+        sessionVariables = {
+          XDG_CONFIG_HOME = "$HOME/.config";
+          EDITOR          = "nvim";
+          TERM            = "ghostty";
+        };
+
+        shellAliases = {
+          ":q"    = "exit";
+          "htop"  = "btop";
+          "cat"   = "bat";
+          "dog"   = "bat";
+          "benji" = "dog";
+        };
+
+        stateVersion = "26.05";
       };
-
-      stateVersion = "26.05";
     };
   };
 }
