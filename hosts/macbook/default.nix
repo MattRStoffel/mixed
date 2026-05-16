@@ -1,6 +1,9 @@
 { ... }: {
   imports = [
+    ./boot.nix
+    ./display.nix
     ./hardware-configuration.nix
+    ./networking.nix
     ./t2
   ];
 
