@@ -3,7 +3,6 @@
 { ... }: {
   imports = [
     # ./hardware-configuration.nix
-    ../../nixos
   ];
 
   # Base steam comes from home/gaming/; gamescopeSession is deck-specific.

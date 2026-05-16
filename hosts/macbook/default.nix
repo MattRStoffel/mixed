@@ -2,7 +2,6 @@
   imports = [
     ./hardware-configuration.nix
     ./t2
-    ../../nixos
   ];
 
   hardware.bluetooth.enable = true;
