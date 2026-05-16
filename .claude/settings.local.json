@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Read(//home/matt/.config/nvim/lua/**)"
-    ]
-  }
-}

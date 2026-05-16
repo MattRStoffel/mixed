@@ -16,9 +16,5 @@
     ];
   };
 
-  xdg.configFile = {
-    "nvim/init.lua".source    = ./init.lua;
-    "nvim/lua/config".source  = ./lua/config;
-    "nvim/lua/plugins".source = ./lua/plugins;
-  };
+  xdg.configFile."nvim".source = ./config;
 }
