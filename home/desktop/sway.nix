@@ -22,7 +22,7 @@ in
       startup = [
         { command = "systemctl --user restart waybar"; always = true; }
         { command = "swaybg -i /home/matt/.config/desktop.png -m fill"; always = true; }
-        { command = "blueman-tray"; always = true; }
+        { command = "blueman-applet"; always = true; }
       ];
     };
 
