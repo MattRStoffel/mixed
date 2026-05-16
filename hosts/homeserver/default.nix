@@ -34,5 +34,5 @@
 
   system.stateVersion = "24.11";
 
-  myHome.users.matt.disabledBundles = [ "desktop" "apps" "gaming" ];
+  myHome.users.matt.disabledBundles = [ "desktop" "apps" ];
 }

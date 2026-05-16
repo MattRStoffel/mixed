@@ -24,9 +24,7 @@ let
     ) hmBundles);
 
 in {
-  # imports must not reference `config` — always load gaming modules
-  # unconditionally and let them use mkIf internally to gate their effects.
-  imports = [ ./fonts.nix ] ++ importDir ./gaming;
+  imports = [ ./fonts.nix ];
 
   options.myHome.users = lib.mkOption {
     default     = {};
@@ -35,7 +33,7 @@ in {
       options.disabledBundles = lib.mkOption {
         type        = lib.types.listOf lib.types.str;
         default     = [];
-        description = "Bundles to skip: shell, cli, dev, desktop, apps, gaming";
+        description = "Bundles to skip: shell, cli, dev, desktop, apps";
       };
     });
   };
