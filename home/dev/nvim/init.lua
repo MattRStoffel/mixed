@@ -21,5 +21,3 @@ require("lazy").setup({
     rtp            = { reset = false },
   },
 })
-
-vim.cmd.colorscheme("nix-theme")

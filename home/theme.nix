@@ -45,7 +45,7 @@ in {
     green   = "50fa7b"; # #50fa7b
     yellow  = "f1fa8c"; # #f1fa8c
     blue    = "6cb6ff"; # #6cb6ff
-    magenta = "bd93f9"; # #bd93f9
+    magenta = "fd93f9"; # #fd93f9
     cyan    = "8be9fd"; # #8be9fd
     white   = "f0ebff"; # #f0ebff
 
