@@ -65,8 +65,8 @@ in {
   };
 
   fonts = {
-    ui       = "Cartograph CF Nerd Font";
-    mono     = "JetBrainsMono Nerd Font";
+    ui       = "Hack Nerd Font";
+    mono     = "Hack Nerd Font";
     size     = 13;
     termSize = 10;
   };

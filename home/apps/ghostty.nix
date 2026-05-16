@@ -4,10 +4,6 @@ let
   c = theme.colors;
 in
 {
-  home.activation.reloadGhostty = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    pkill -USR2 ghostty 2>/dev/null || true
-  '';
-
   programs.ghostty = {
     enable = true;
     settings = {

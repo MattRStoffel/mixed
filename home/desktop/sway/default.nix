@@ -13,7 +13,10 @@
       floating.titlebar = false;
 
       keybindings = lib.mkOptionDefault {
-        "${modifier}+space" = "exec fuzzel";
+        "${modifier}+space"    = "exec fuzzel";
+        "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+        "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioMute"        = "exec pactl set-sink-mute   @DEFAULT_SINK@ toggle";
       };
 
       startup = [
@@ -23,7 +26,10 @@
       ];
     };
 
-    extraConfig = import ./style.nix;
+    extraConfig = import ./style.nix + ''
+      bindswitch lid:on  output eDP-1 disable
+      bindswitch lid:off output eDP-1 enable
+    '';
   };
 
   home.packages = with pkgs; [ swaybg ];
