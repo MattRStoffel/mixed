@@ -14,6 +14,18 @@ return {
         capabilities = require("cmp_nvim_lsp").default_capabilities(),
       })
 
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(event)
+          local map  = vim.keymap.set
+          local opts = { buffer = event.buf }
+          map("n", "gd",         vim.lsp.buf.definition,  opts)
+          map("n", "K",          vim.lsp.buf.hover,       opts)
+          map("n", "gr",         vim.lsp.buf.references,  opts)
+          map("n", "<leader>rn", vim.lsp.buf.rename,      opts)
+          map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+        end,
+      })
+
       require("mason-lspconfig").setup({
         ensure_installed = {
           "lua_ls",        -- Lua
@@ -21,11 +33,13 @@ return {
           "rust_analyzer", -- Rust
           "gopls",         -- Go
           "pyright",       -- Python
-          "hls",           -- Haskell
           "ts_ls",         -- JavaScript / TypeScript
         },
         automatic_enable = true,
       })
+
+      -- hls: provided externally, not via mason.
+      vim.lsp.enable("hls")
 
       -- sourcekit ships with Xcode (xcrun) so mason can't install it.
       vim.lsp.config("sourcekit", {

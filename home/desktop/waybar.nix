@@ -1,4 +1,10 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  theme = import ../theme.nix;
+  c = theme.colors;
+  f = theme.fonts;
+in
+{
   programs.waybar = {
     enable = true;
 
@@ -17,7 +23,7 @@
       "sway/workspaces" = {
         disable-scroll = true;
         all-outputs    = true;
-        format         = "{icon}";
+        format         = "{name}";
         format-icons."default" = "";
       };
 
@@ -61,8 +67,8 @@
 
     style = ''
       * {
-        font-family: "Cartograph CF Nerd Font", "JetBrainsMono Nerd Font";
-        font-size: 13px;
+        font-family: "${f.ui}", "${f.mono}";
+        font-size: ${toString f.size}px;
         border: none;
         min-height: 0;
       }
@@ -78,28 +84,28 @@
       #pulseaudio,
       #network,
       #tray {
-        background: rgba(25, 23, 36, 0.8);
-        color: #e0def4;
+        background: ${c.backgroundAlpha};
+        color: #${c.text};
         padding: 2px 14px;
         border-radius: 8px;
-        border: 1px solid rgba(156, 207, 216, 0.2);
+        border: 1px solid ${c.accentAlpha};
       }
 
       #workspaces { padding: 0; }
 
       #workspaces button {
         padding: 0 10px;
-        color: #6e6a86;
+        color: #${c.subtle};
         border-radius: 5px;
         transition: all 0.3s ease;
       }
 
       #workspaces button.focused {
-        color: #9ccfd8;
-        background: #26233a;
+        color: #${c.accent};
+        background: #${c.surface};
       }
 
-      #workspaces button.urgent { color: #eb6f92; }
+      #workspaces button.urgent { color: #${c.urgent}; }
 
       #window {
         background: transparent;
@@ -107,13 +113,13 @@
         font-style: italic;
       }
 
-      #clock { color: #c4a7e7; }
+      #clock { color: #${c.secondary}; }
 
-      #battery.charging { color: #f6c177; }
+      #battery.charging { color: #${c.highlight}; }
 
       #battery.critical:not(.charging) {
-        background-color: #eb6f92;
-        color: #e0def4;
+        background-color: #${c.urgent};
+        color: #${c.text};
         animation-name: blink;
         animation-duration: 0.5s;
         animation-timing-function: linear;
@@ -122,7 +128,7 @@
       }
 
       @keyframes blink {
-        to { background-color: #191724; color: #eb6f92; }
+        to { background-color: #${c.background}; color: #${c.urgent}; }
       }
     '';
   };

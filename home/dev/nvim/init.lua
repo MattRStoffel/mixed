@@ -1,4 +1,3 @@
--- Bootstrap lazy.nvim — skipped if already installed.
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
@@ -10,7 +9,17 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("options")
-require("plugins")
-require("keymaps")
-require("theme")
+require("config.options")
+require("config.keymaps")
+
+require("lazy").setup({
+  { import = "plugins" },
+}, {
+  rocks       = { enabled = false },
+  performance = {
+    reset_packpath = false,
+    rtp            = { reset = false },
+  },
+})
+
+vim.cmd.colorscheme("nix-theme")

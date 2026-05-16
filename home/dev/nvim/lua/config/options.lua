@@ -19,12 +19,10 @@ o.updatetime     = 250
 o.timeoutlen     = 300
 o.splitright     = true
 o.splitbelow     = true
-o.list           = false
-o.listchars      = { tab = "» ", trail = "·", nbsp = "␣" }
 o.inccommand     = "split"
 o.cursorline     = true
 o.scrolloff      = 6
-o.completeopt    = { "menuone", "noselect", "noinsert" }
+o.completeopt    = { "menu", "menuone", "noselect" }
 o.pumheight      = 5
 o.termguicolors  = true
 o.shortmess:append("c")

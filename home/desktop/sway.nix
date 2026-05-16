@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+let
+  c = (import ../theme.nix).colors;
+in
+{
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
@@ -27,7 +31,7 @@
       gaps outer 3
 
       default_border pixel 2
-      client.focused #9ccfd8 #191724 #9ccfd8 #9ccfd8
+      client.focused #${c.accent} #${c.background} #${c.accent} #${c.accent}
 
       bindswitch lid:on  output eDP-1 disable
       bindswitch lid:off output eDP-1 enable

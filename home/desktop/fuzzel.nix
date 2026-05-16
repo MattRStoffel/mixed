@@ -1,9 +1,15 @@
-{...}: {
+{ ... }:
+let
+  theme = import ../theme.nix;
+  c = theme.colors;
+  f = theme.fonts;
+in
+{
   programs.fuzzel = {
     enable = true;
     settings = {
       main = {
-        font         = "Cartograph CF Nerd Font:size=13";
+        font         = "${f.ui}:size=${toString f.size}";
         prompt       = "'❯  '";
         terminal     = "ghostty";
         width        = 40;
@@ -14,13 +20,13 @@
       };
 
       colors = {
-        background      = "191724ff";
-        text            = "e0def4ff";
-        match           = "f6c177ff";
-        selection       = "26233aff";
-        selection-text  = "9ccfd8ff";
-        selection-match = "f6c177ff";
-        border          = "9ccfd833";
+        background      = "${c.background}ff";
+        text            = "${c.text}ff";
+        match           = "${c.highlight}ff";
+        selection       = "${c.surface}ff";
+        selection-text  = "${c.accent}ff";
+        selection-match = "${c.highlight}ff";
+        border          = "${c.accent}33";
       };
 
       border = {

@@ -1,11 +1,23 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+let
+  c = (import ../theme.nix).colors;
+in
+{
   programs.fzf = {
     enable = true;
     colors = {
-      bg = "#1e1e1e";
-      "bg+" = "#1e1e1e";
-      fg = "#d4d4d4";
-      "fg+" = "#d4d4d4";
+      bg        = "#${c.background}";
+      "bg+"     = "#${c.surface}";
+      fg        = "#${c.text}";
+      "fg+"     = "#${c.text}";
+      hl        = "#${c.accent}";
+      "hl+"     = "#${c.accent}";
+      border    = "#${c.subtle}";
+      prompt    = "#${c.secondary}";
+      pointer   = "#${c.accent}";
+      marker    = "#${c.highlight}";
+      spinner   = "#${c.secondary}";
+      header    = "#${c.subtle}";
     };
     enableZshIntegration = true;
     package = pkgs.fzf;
