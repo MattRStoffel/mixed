@@ -1,9 +1,9 @@
-local c = require("generated.colors").colors
+local c = require("config.colors").colors
 
 local function hi(group, opts) vim.api.nvim_set_hl(0, group, opts) end
 
 vim.cmd("hi clear")
-vim.o.background = "dark"
+-- vim.o.background = "dark"
 
 -- Base
 hi("Normal",       { fg = c.text,       bg = c.background })
@@ -47,7 +47,7 @@ hi("DiagnosticUnderlineWarn",  { undercurl = true, sp = c.highlight })
 hi("Comment",    { fg = c.subtle,     italic = true })
 hi("Keyword",    { fg = c.accent,     bold = true })
 hi("Function",   { fg = c.secondary })
-hi("String",     { fg = c.green })
+hi("String",     { fg = c.blue })
 hi("Number",     { fg = c.cyan })
 hi("Boolean",    { fg = c.cyan })
 hi("Operator",   { fg = c.text })

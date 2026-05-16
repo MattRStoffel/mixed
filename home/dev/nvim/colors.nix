@@ -1,10 +1,10 @@
-{...}:
+{ ... }:
 let
   theme = import ../../theme.nix;
   c     = theme.colors;
   f     = theme.fonts;
 in {
-  xdg.configFile."nvim/lua/options/colors.lua".text = ''
+  xdg.configFile."nvim/lua/config/colors.lua".text = ''
     return {
       colors = {
         background    = "#${c.background}",
@@ -33,7 +33,6 @@ in {
         brightWhite   = "#${c.brightWhite}",
       },
       fonts = {
-        ui       = "${f.ui}",
         mono     = "${f.mono}",
         size     = ${toString f.size},
         termSize = ${toString f.termSize},

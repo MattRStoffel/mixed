@@ -1,5 +1,6 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [ ./colors.nix ];
+
   programs.neovim = {
     enable        = true;
     defaultEditor = true;
@@ -7,14 +8,12 @@
     vimAlias      = true;
     vimdiffAlias  = true;
     extraPackages = with pkgs; [
-      nodejs
-      gcc
-      clang
-      unzip
-      go
-      haskell-language-server
+      nodejs gcc clang unzip go haskell-language-server
     ];
   };
 
-  xdg.configFile."nvim".source = ./config;
+  xdg.configFile."nvim" = {
+    source    = ./config;
+    recursive = true; # <--- This is the magic key
+  };
 }
