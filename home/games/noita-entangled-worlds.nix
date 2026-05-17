@@ -14,8 +14,21 @@ let
     unpackPhase = "unzip $src";
 
     installPhase = ''
-      install -Dm755 noita_proxy.x86_64 $out/bin/noita-proxy
-      install -Dm644 libsteam_api.so $out/bin/libsteam_api.so
+      install -Dm755 noita_proxy.x86_64 $out/libexec/noita_proxy
+      install -Dm644 libsteam_api.so $out/libexec/libsteam_api.so
+
+      mkdir -p $out/bin
+      cat > $out/bin/noita-proxy << 'EOF'
+#!/bin/sh
+dir="$HOME/.local/share/noita-entangled-worlds"
+mkdir -p "$dir"
+cp -u @out@/libexec/noita_proxy "$dir/noita_proxy"
+cp -u @out@/libexec/libsteam_api.so "$dir/libsteam_api.so"
+chmod +x "$dir/noita_proxy"
+exec "$dir/noita_proxy" "$@"
+EOF
+      chmod +x $out/bin/noita-proxy
+      substituteInPlace $out/bin/noita-proxy --replace @out@ $out
     '';
   };
 in {
