@@ -27,7 +27,8 @@ in {
     (importDir "${self}/home/shell") ++
     (importDir "${self}/home/cli") ++
     (importDir "${self}/home/apps") ++
-    (importDir "${self}/home/dev");
+    (importDir "${self}/home/dev") ++
+    (importDir "${self}/home/games");
 
   # Wrap home.packages apps via overlay so legcord.nix / libreoffice.nix /
   # nextcloud.nix pick up the wrapped version without modification.
@@ -38,10 +39,6 @@ in {
       nextcloud-client = nixGLWrap prev.nextcloud-client;
       prismlauncher    = nixGLWrap prev.prismlauncher;
     })
-  ];
-
-  home.packages = with pkgs; [
-    prismlauncher
   ];
 
   # Wrap programs.* apps by overriding their package.

@@ -15,6 +15,7 @@ let
     dev     = importDir ./dev;
     desktop = importDir ./desktop;
     apps    = importDir ./apps;
+    games   = importDir ./games;
   };
 
   mkHmImports = username:
@@ -33,7 +34,7 @@ in {
       options.disabledBundles = lib.mkOption {
         type        = lib.types.listOf lib.types.str;
         default     = [];
-        description = "Bundles to skip: shell, cli, dev, desktop, apps";
+        description = "Bundles to skip: shell, cli, dev, desktop, apps, games";
       };
     });
   };

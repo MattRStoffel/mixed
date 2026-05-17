@@ -20,7 +20,7 @@
   virtualisation.docker.enable = true;
   users.users.matt.extraGroups = [ "docker" ];
 
-  # myHome.users.matt.disabledBundles = [ "server" ];
+  myHome.users.matt.disabledBundles = [ "games" ];
 
   system.stateVersion = "24.11";
 }
