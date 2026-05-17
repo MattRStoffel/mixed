@@ -16,13 +16,17 @@
     hardware.url       = "github:NixOS/nixos-hardware";
 
     nixos-cli.url      = "github:nix-community/nixos-cli";
+
+    nixgl.url          = "github:nix-community/nixGL";
+    nixgl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, nix-darwin, home-manager, hardware, nixos-cli, ... } @ inputs:
   let
     lib = nixpkgs.lib;
 
-    # Shared helper — auto-imports every .nix file in a directory.
+    # Auto-imports every .nix file in a directory. Passed to standalone
+    # home-manager hosts via extraSpecialArgs so they can self-select bundles.
     importDir = dir:
       let
         entries = builtins.readDir dir;
@@ -33,6 +37,7 @@
         ++ map (name: dir + "/${name}") (builtins.attrNames dirs);
 
     # NixOS hosts (includes home-manager as a NixOS module).
+    # Apply with: sudo nixos-rebuild switch --flake .#<host>
     mkNixos = extraModules: nixpkgs.lib.nixosSystem {
       modules = [
         ./shared
@@ -45,20 +50,19 @@
 
     # Standalone home-manager hosts (non-NixOS — Arch, etc.).
     # Apply with: home-manager switch --flake .#<host>
-    mkHome = { system, bundles, extraModules ? [] }:
+    mkHome = { system, extraModules ? [] }:
       home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
-        modules = [
-          ./home/base.nix
-          ({ ... }: { imports = lib.flatten (map importDir bundles); })
-        ] ++ extraModules;
-        extraSpecialArgs = { inherit inputs self; };
+        modules = [ ./home/base.nix ] ++ extraModules;
+        extraSpecialArgs = {
+          inherit inputs self importDir;
+          nixGLPkg = inputs.nixgl.packages.${system}.nixGLIntel;
+        };
       };
 
   in {
 
     # ── macOS (nix-darwin) ────────────────────────────────────────────────────
-    # Apply with: darwin-rebuild switch --flake .#macbook
     darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
       system = "x86_64-darwin";
       modules = [
@@ -71,7 +75,6 @@
     };
 
     # ── NixOS ─────────────────────────────────────────────────────────────────
-    # Apply with: sudo nixos-rebuild switch --flake .#<host>
     nixosConfigurations = {
 
       macbook = mkNixos [
@@ -86,12 +89,10 @@
     };
 
     # ── Home Manager (non-NixOS) ──────────────────────────────────────────────
-    # Apply with: home-manager switch --flake .#<host>
     homeConfigurations = {
 
       deck = mkHome {
-        system  = "x86_64-linux";
-        bundles = [ ./home/shell ./home/cli ./home/apps ./home/dev ];
+        system = "x86_64-linux";
         extraModules = [ ./hosts/steamdeck ];
       };
 
