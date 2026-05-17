@@ -3,6 +3,10 @@
 { ... }: {
   imports = [
     # ./hardware-configuration.nix
+    ./calibre.nix
+    ./jellyfin.nix
+    ./metube.nix
+    ./nextcloud.nix
   ];
 
   virtualisation.docker.enable = true;

@@ -1,5 +1,4 @@
-{ pkgs, lib, config, ... }:
-lib.mkIf (!builtins.elem "server" (lib.attrByPath [ "matt" "disabledBundles" ] [] config.myHome.users)) {
+{ pkgs, ... }: {
   services.nextcloud = {
     enable = true;
 

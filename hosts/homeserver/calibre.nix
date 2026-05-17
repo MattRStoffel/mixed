@@ -1,5 +1,4 @@
-{ lib, config, ... }:
-lib.mkIf (!builtins.elem "server" (lib.attrByPath [ "matt" "disabledBundles" ] [] config.myHome.users)) {
+{ ... }: {
   # No native NixOS equivalent for the full linuxserver/calibre image (KasmVNC
   # GUI + content server), so this runs as a Docker container via NixOS.
   virtualisation.oci-containers = {
@@ -7,9 +6,10 @@ lib.mkIf (!builtins.elem "server" (lib.attrByPath [ "matt" "disabledBundles" ] [
     containers.calibre = {
       image = "lscr.io/linuxserver/calibre:latest";
       ports = [
-        "8080:8080" # KasmVNC web GUI
-        "8181:8181" # KasmVNC HTTPS
-        "8081:8081" # Calibre content server
+        "1080:8080" # KasmVNC web GUI
+        "1181:8181" # KasmVNC HTTPS
+        "1081:8081" # Calibre content server
+        "9090:9090" # Calibre wireless device sync
       ];
       environment = {
         PUID = "1000";
@@ -26,5 +26,5 @@ lib.mkIf (!builtins.elem "server" (lib.attrByPath [ "matt" "disabledBundles" ] [
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 8080 8081 8181 ];
+  networking.firewall.allowedTCPPorts = [ 1080 1081 1181 9090 ];
 }
