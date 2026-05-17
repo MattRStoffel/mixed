@@ -36,7 +36,12 @@ in {
       legcord          = nixGLWrap prev.legcord;
       libreoffice      = nixGLWrap prev.libreoffice;
       nextcloud-client = nixGLWrap prev.nextcloud-client;
+      prismlauncher    = nixGLWrap prev.prismlauncher;
     })
+  ];
+
+  home.packages = with pkgs; [
+    prismlauncher
   ];
 
   # Wrap programs.* apps by overriding their package.
