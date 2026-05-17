@@ -1,4 +1,4 @@
-{ lib, pkgs, config, ... }:
+{ lib, config, ... }:
 let
   importDir = dir:
     let
@@ -42,27 +42,9 @@ in {
     home-manager.backupFileExtension = "backup";
 
     home-manager.users.matt = {
-      imports = mkHmImports "matt";
+      imports = mkHmImports "matt" ++ [ ./base.nix ];
 
-      home = {
-        packages = with pkgs; [];
-
-        sessionVariables = {
-          XDG_CONFIG_HOME = "$HOME/.config";
-          EDITOR          = "nvim";
-          TERM            = "ghostty";
-        };
-
-        shellAliases = {
-          ":q"    = "exit";
-          "htop"  = "btop";
-          "cat"   = "bat";
-          "dog"   = "bat";
-          "benji" = "dog";
-        };
-
-        stateVersion = "26.05";
-      };
+      home.stateVersion = "26.05";
     };
   };
 }
