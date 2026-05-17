@@ -1,6 +1,4 @@
 { ... }: {
-  # No native NixOS equivalent for the full linuxserver/calibre image (KasmVNC
-  # GUI + content server), so this runs as a Docker container via NixOS.
   virtualisation.oci-containers = {
     backend = "docker";
     containers.calibre = {
